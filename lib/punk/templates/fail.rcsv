@@ -1,0 +1,6 @@
+csv << ['ERRORS']
+csv << [message]
+csv << [status]
+error_messages.each do |error|
+  csv << [error]
+end

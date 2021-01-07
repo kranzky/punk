@@ -1,0 +1,9 @@
+doctype html
+html
+  head
+    title= message
+  body
+    h1= "#{message} (#{status})"
+    ul
+    - error_messages.each do |error|
+      li= error

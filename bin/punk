@@ -4,6 +4,15 @@
 
 require 'rubygems'
 require 'bundler/setup'
+require 'commander/import'
 require_relative '../lib/punk'
 
-puts "Let's Punk!"
+PUNK.init(task: 'script', config: { app: { name: 'Punk!' } }).config
+
+program :name, PUNK.get.app.name
+program :version, PUNK.version
+program :description, 'An omakase web framework for rapid prototyping.'
+
+PUNK.commands(:commander)
+
+default_command :help

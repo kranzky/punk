@@ -1,0 +1,47 @@
+{
+  "app": {
+    "name": "Unnamed Punk! App",
+    "reloadable": false
+  },
+  "log": {
+    "enabled": true,
+    "type": "stdout",
+    "level": "trace"
+  },
+  "cookie": {
+    "secret": "$COOKIE_SECRET",
+    "key": "punk.session"
+  },
+  "mailgun": {
+    "api_key": "$MAILGUN_API_KEY",
+    "domain": "$MAILGUN_DOMAIN",
+    "postbin": "$MAILGUN_POSTBIN",
+    "mock": false,
+    "whitelist": []
+  },
+  "plivo": {
+    "auth_id": "$PLIVO_AUTH_ID",
+    "auth_token": "$PLIVO_AUTH_TOKEN",
+    "number": "$PLIVO_NUMBER",
+    "mock": false,
+    "whitelist": []
+  },
+  "userstack": {
+    "api_key": "$USERSTACK_API_KEY",
+    "use_ssl": false
+  },
+  "db": {
+    "url": "$DATABASE_URL"
+  },
+  "cache": {
+    "servers": "$MEMCACHIER_SERVERS",
+    "options": {
+      "username": "$MEMCACHIER_USERNAME",
+      "password": "$MEMCACHIER_PASSWORD",
+      "failover": true,
+      "socket_timeout": 1.5,
+      "socket_failure_delay": 0.2,
+      "down_retry_delay": 60
+    }
+  }
+}

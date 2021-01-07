@@ -1,0 +1,55 @@
+{
+  "_env!": "Enum(test, development, staging, production)",
+  "_task!": "Enum(server, script, console, worker, spec)",
+  "_trace": "String",
+  "app": {
+    "name!": "String",
+    "description": "String",
+    "url": "URI",
+    "_path!": "Dir",
+    "reloadable!": "Flag",
+    "client": "URI"
+  },
+  "cookie": {
+    "secret!": "String",
+    "key": "String"
+  },
+  "mailgun": {
+    "api_key": "String",
+    "domain": "String",
+    "postbin": "String",
+    "mock": "Flag",
+    "whitelist": "Array"
+  },
+  "plivo": {
+    "auth_id": "String",
+    "auth_token": "String",
+    "number": "String",
+    "mock": "Flag",
+    "whitelist": "Array"
+  },
+  "userstack": {
+    "api_key": "String",
+    "use_ssl": "Flag"
+  },
+  "log": {
+    "enabled!": "Flag",
+    "type!": "Enum(stdout, stderr, file)",
+    "level!": "Enum(trace, debug, info, warn, error, critical)",
+    "path": "File(/*.log$/)"
+  },
+  "db": {
+    "url!": "URI"
+  },
+  "cache": {
+    "servers!": "String",
+    "options": {
+      "username": "String",
+      "password": "String",
+      "failover": "Flag",
+      "socket_timeout": "Float",
+      "socket_failure_delay": "Float",
+      "down_retry_delay": "Integer"
+    }
+  }
+}
