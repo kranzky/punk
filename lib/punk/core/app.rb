@@ -30,7 +30,7 @@ module PUNK
     include Loggable
 
     PUBLIC = File.join(PUNK.get.app.path, '..', 'www')
-    QUASAR = File.read(File.join(PUBLIC, 'index.html'))
+    INDEX = File.read(File.join(PUBLIC, 'index.html'))
     REMOTE = PUNK.env.staging? || PUNK.env.production?
 
     plugin :sessions, secret: [PUNK.get.cookie.secret].pack('H*'),
@@ -71,7 +71,8 @@ module PUNK
 
     def require_session!
       begin
-        @_current_session = Session[request.session['session_id']]
+        # TODO
+        @_current_session = nil #Session[request.session['session_id']]
         if @_current_session&.active?
           @_current_session.touch
         else
@@ -166,14 +167,17 @@ module PUNK
     not_found do
       raise NotFound, "Cannot serve #{request.path}" unless request.is_get?
       response.status = 200
-      QUASAR
+      INDEX
     end
 
     before do
       @_started = Time.now.utc
       name = "#{request.request_method} #{request.path}"
-      logger.info "Started #{name} for #{request.ip || Session.default_values[:remote_addr].to_s}", params.deep_symbolize_keys.sanitize.inspect
-      logger.trace request.env['HTTP_USER_AGENT'] || Session.default_values[:user_agent]
+      logger.info "Started #{name} for #{request.ip}", params.deep_symbolize_keys.sanitize.inspect
+      logger.trace request.env['HTTP_USER_AGENT']
+      # TODO
+#     logger.info "Started #{name} for #{request.ip || Session.default_values[:remote_addr].to_s}", params.deep_symbolize_keys.sanitize.inspect
+#     logger.trace request.env['HTTP_USER_AGENT'] || Session.default_values[:user_agent]
       logger.trace request.env['HTTP_COOKIE']
       logger.push_tags(name)
       _set_cookie(request.env)
