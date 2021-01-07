@@ -262,7 +262,7 @@ module PUNK
     def _add_environment
       ENV.each do |key, value|
         key = key.downcase
-        match = /^rr_(.*)$/.match(key)
+        match = /^punk_(.*)$/.match(key)
         next unless match
         key = match[1].split('_').reject(&:empty?).map(&:to_sym)
         _add_value(key, value)

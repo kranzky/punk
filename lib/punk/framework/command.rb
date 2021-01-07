@@ -69,16 +69,16 @@ module PUNK
       command.instance_variable_set(:@group, "rr2go")
       command.class_eval do
         define_method(:options) do |opt|
-          rr_command = PUNK.store.commands[match]
-          rr_command.instance_variable_get(:@options).each_value do |option|
+          punk_command = PUNK.store.commands[match]
+          punk_command.instance_variable_get(:@options).each_value do |option|
             opt.on option[:shortcut], option[:name], option[:description], argument: true, as: option[:type]
           end
         end
         define_method(:process) do
-          rr_command = PUNK.store.commands[match]
-          rr_command.instance_variable_set(:@args, args)
-          rr_command.instance_variable_set(:@opts, opts.to_h)
-          result = rr_command.process
+          punk_command = PUNK.store.commands[match]
+          punk_command.instance_variable_set(:@args, args)
+          punk_command.instance_variable_set(:@opts, opts.to_h)
+          result = punk_command.process
           SemanticLogger.flush
           output.puts result
         end
