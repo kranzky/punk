@@ -14,13 +14,13 @@ require 'juwelier'
 Juwelier::Tasks.new do |gem|
   # gem is a Gem::Specification... see http://guides.rubygems.org/specification-reference/ for more options
   gem.name = "punk"
-  gem.homepage = "http://github.com/Jason Hutchens/punk"
-  gem.license = "MIT"
-  gem.summary = %Q{TODO: one-line summary of your gem}
-  gem.description = %Q{TODO: longer description of your gem}
-  gem.email = "jasonhutchens@gmail.com"
-  gem.authors = ["Jason Hutchens"]
-
+  gem.homepage = "https://github.com/kranzky/punk"
+  gem.license = "UNLICENSE"
+  gem.summary = %Q{Punk! is an omakase web framework for rapid prototyping.}
+  gem.description = %Q{}
+  gem.email = "lloyd@kranzky.com"
+  gem.authors = ["Lloyd Kranzky"]
+  gem.required_ruby_version = ">= 2.6"
   # dependencies defined in Gemfile
 end
 Juwelier::RubygemsDotOrgTasks.new
