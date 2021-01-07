@@ -16,7 +16,7 @@ end
 command :console do |c|
   c.description = 'Launch the console'
   c.action do
-    say(HighLine.color('☕ Entering the Double-R...', :green, :bold))
+    say(HighLine.color('🤘 Are you ready to rock?', :green, :bold))
     path = File.join(__dir__, 'cli.rb')
     exec "pry -r #{path}"
   end

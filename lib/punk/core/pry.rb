@@ -36,4 +36,4 @@ Pry.config.print =
     SemanticLogger.flush
     output.puts "=> #{value.inspect}"
   end
-Pry.config.prompt_name = "🍰 "
+Pry.config.prompt_name = "🎤 "

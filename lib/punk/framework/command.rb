@@ -66,7 +66,7 @@ module PUNK
     def _pry
       command = Pry::Commands.create_command(@name) {} # rubocop:disable Lint/EmptyBlock
       command.description = @description
-      command.instance_variable_set(:@group, "rr2go")
+      command.instance_variable_set(:@group, "punk")
       command.class_eval do
         define_method(:options) do |opt|
           punk_command = PUNK.store.commands[match]

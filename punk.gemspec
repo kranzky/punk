@@ -16,15 +16,16 @@ Gem::Specification.new do |s|
   s.email = "lloyd@kranzky.com".freeze
   s.executables = ["punk".freeze]
   s.extra_rdoc_files = [
+    "LICENSE",
     "README.md"
   ]
   s.files = [
     ".document",
     "Gemfile",
     "Gemfile.lock",
+    "LICENSE",
     "README.md",
     "Rakefile",
-    "UNLICENSE",
     "VERSION",
     "bin/punk",
     "lib/punk.rb",

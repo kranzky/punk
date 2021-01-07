@@ -67,7 +67,7 @@ PUNK::Interface.register(:exec) do |c|
   c.load
   retval = PUNK.profile_debug('exec') { require_relative 'exec' }
   PUNK.logger.tagged(PUNK.env, PUNK.task) do
-    PUNK.logger.info "☕ ☕ ☕  #{PUNK.get.app.name} ☕ ☕ ☕ "
+    PUNK.logger.info PUNK.get.app.name
   end
   SemanticLogger.flush
   retval
