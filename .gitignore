@@ -1,0 +1,4 @@
+*.swp
+.ruby-version
+.ruby-gemset
+tmp
