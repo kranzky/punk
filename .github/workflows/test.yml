@@ -17,4 +17,4 @@ jobs:
     - name: Install gem
       run: bundle exec rake install
     - name: Run tests
-      run: bundle exec punk test
+      run: punk test
