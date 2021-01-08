@@ -21,6 +21,9 @@ Gem::Specification.new do |s|
   ]
   s.files = [
     ".document",
+    ".github/workflows/ship.yml",
+    ".github/workflows/test.yml",
+    ".rubocop.yml",
     "Gemfile",
     "Gemfile.lock",
     "LICENSE",
@@ -28,6 +31,7 @@ Gem::Specification.new do |s|
     "Rakefile",
     "VERSION",
     "bin/punk",
+    "env/test.sh",
     "lib/punk.rb",
     "lib/punk/commands/auth.rb",
     "lib/punk/commands/generate.rb",
