@@ -2,7 +2,7 @@ name: ship
 
 on:
   workflow_run:
-    workflows: ['test']
+    workflows: ['disabled']
     branches:
       - main
     types:

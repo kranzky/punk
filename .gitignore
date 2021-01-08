@@ -10,3 +10,4 @@ doc
 .bundle
 pkg
 .DS_Store
+vendor
