@@ -14,5 +14,7 @@ jobs:
       with:
         ruby-version: 2.5.8
         bundler-cache: true
+    - name: Build gem
+      run: bundle exec rake build
     - name: Run tests
       run: bundle exec punk test
