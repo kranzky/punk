@@ -14,7 +14,7 @@ require 'juwelier'
 Juwelier::Tasks.new do |gem|
   gem.name = "punk"
   gem.homepage = "https://github.com/kranzky/punk"
-  gem.license = "The Unlicense"
+  gem.license = "Unlicense"
   gem.summary = "Punk! is an omakase web framework for rapid prototyping."
   gem.description = ""
   gem.email = "lloyd@kranzky.com"
