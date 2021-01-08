@@ -24,7 +24,7 @@ PUNK::Command.create "PATCH" do
       "PATH_INFO" => args[0],
       "CONTENT_TYPE" => "text/json",
       "SCRIPT_NAME" => "",
-      "rack.input" => StringIO.new(args[1..].join)
+      "rack.input" => StringIO.new(args[1..-1].join)
     )
   end
 end
@@ -38,7 +38,7 @@ PUNK::Command.create "POST" do
       "PATH_INFO" => args[0],
       "CONTENT_TYPE" => "text/json",
       "SCRIPT_NAME" => "",
-      "rack.input" => StringIO.new(args[1..].join)
+      "rack.input" => StringIO.new(args[1..-1].join)
     )
   end
 end
@@ -52,7 +52,7 @@ PUNK::Command.create "PUT" do
       "PATH_INFO" => args[0],
       "CONTENT_TYPE" => "text/json",
       "SCRIPT_NAME" => "",
-      "rack.input" => StringIO.new(args[1..].join)
+      "rack.input" => StringIO.new(args[1..-1].join)
     )
   end
 end

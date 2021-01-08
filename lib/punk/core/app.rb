@@ -36,7 +36,7 @@ module PUNK
       if File.exist?(index_path)
         File.read(index_path)
       else
-        <<~EOF
+        <<~INDEX_HTML
           <!DOCTYPE html>
           <html>
             <head>
@@ -47,7 +47,7 @@ module PUNK
               <p>Are you <a href="https://github.com/kranzky/lets-punk">ready</a> to rock?</p>
             </body>
           </html>
-        EOF
+        INDEX_HTML
       end
 
     plugin :sessions, secret: [PUNK.get.cookie.secret].pack('H*'),
@@ -89,7 +89,7 @@ module PUNK
     def require_session!
       begin
         # TODO
-        @_current_session = nil #Session[request.session['session_id']]
+        @_current_session = nil # Session[request.session['session_id']]
         if @_current_session&.active?
           @_current_session.touch
         else
@@ -193,8 +193,8 @@ module PUNK
       logger.info "Started #{name} for #{request.ip}", params.deep_symbolize_keys.sanitize.inspect
       logger.trace request.env['HTTP_USER_AGENT']
       # TODO
-#     logger.info "Started #{name} for #{request.ip || Session.default_values[:remote_addr].to_s}", params.deep_symbolize_keys.sanitize.inspect
-#     logger.trace request.env['HTTP_USER_AGENT'] || Session.default_values[:user_agent]
+      # logger.info "Started #{name} for #{request.ip || Session.default_values[:remote_addr].to_s}", params.deep_symbolize_keys.sanitize.inspect
+      # logger.trace request.env['HTTP_USER_AGENT'] || Session.default_values[:user_agent]
       logger.trace request.env['HTTP_COOKIE']
       logger.push_tags(name)
       _set_cookie(request.env)

@@ -12,7 +12,7 @@ module PUNK
 
     def method_missing(key, *args, &block)
       val = super
-      val = val.to_h if val.class == self.class || val.class.instance_of?(self.class)
+      val = val.to_h if val.instance_of?(self.class)
       val
     end
 

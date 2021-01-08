@@ -6,11 +6,11 @@ command :test do |c|
     say('Running tests...')
     unless ENV['PUNK_ENV'] == 'test'
       error('!!! PUNK_ENV should be test !!!')
-      exit 1
+      exit 1 # rubocop:disable Rails/Exit
     end
     ENV.delete_if { |name, _value| name =~ /^PUNK_/ }
     system('rubocop') &&
-#     system('quasar build -m pwa') && TODO
+      # system('quasar build -m pwa') && TODO
       system('PUNK_ENV=test rspec')
     exit $CHILD_STATUS.exitstatus # rubocop:disable Rails/Exit
   end
