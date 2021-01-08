@@ -89,6 +89,7 @@ gem 'phony', '~> 2.18'
 
 # Development
 group :development do
+  gem 'bundler', '~> 1.17'
   gem 'gemfile_updater', '~> 0.1'
   gem 'juwelier', '~> 2.4'
 end
