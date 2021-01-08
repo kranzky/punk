@@ -29,9 +29,26 @@ module PUNK
   class App < Roda
     include Loggable
 
-    PUBLIC = File.join(PUNK.get.app.path, '..', 'www')
-    INDEX = File.read(File.join(PUBLIC, 'index.html'))
     REMOTE = PUNK.env.staging? || PUNK.env.production?
+    PUBLIC = File.join(PUNK.get.app.path, '..', 'www')
+    index_path = File.join(PUBLIC, 'index.html')
+    INDEX =
+      if File.exist?(index_path)
+        File.read(index_path)
+      else
+        <<~EOF
+          <!DOCTYPE html>
+          <html>
+            <head>
+              <title>Let's Punk!</title>
+            </head>
+            <body>
+              <h1>Let's Punk!</h1>
+              <p>Are you <a href="https://github.com/kranzky/lets-punk">ready</a> to rock?</p>
+            </body>
+          </html>
+        EOF
+      end
 
     plugin :sessions, secret: [PUNK.get.cookie.secret].pack('H*'),
                       key: PUNK.get.cookie.key,
