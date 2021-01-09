@@ -71,7 +71,7 @@ module PUNK
     plugin :slash_path_empty
     plugin :multi_route
     plugin :type_routing, types: { csv: 'text/csv' }, default_type: :json
-#   plugin :route_list, file: ROUTES TODO
+    # plugin :route_list, file: ROUTES TODO
     plugin :disallow_file_uploads
     plugin :public, root: PUBLIC
 
