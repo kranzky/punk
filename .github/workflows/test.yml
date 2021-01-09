@@ -14,5 +14,7 @@ jobs:
       with:
         ruby-version: 2.5.8
         bundler-cache: true
-    - name: Run tests
-      run: bundle exec ruby ./bin/punk test
+    - name: Lint files
+      run: bundle exec rubocop
+    - name: Run specs
+      run: bundle exec rspec
