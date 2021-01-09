@@ -103,7 +103,7 @@ group :test do
   gem 'rack-test', '~> 1.1'
   gem 'rspec', '~> 3.10'
   gem 'rspec-its', '~> 1.3'
-  gem 'rubocop', '~> 1.7'
+  gem 'rubocop', '~> 1.8'
   gem 'rubocop-rails', '~> 2.9'
   gem 'rubocop-rspec', '~> 2.1'
   gem 'rubocop-sequel', '~> 0.1'

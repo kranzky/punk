@@ -329,7 +329,7 @@ DEPENDENCIES
   roda-route_list (~> 2.1)
   rspec (~> 3.10)
   rspec-its (~> 1.3)
-  rubocop (~> 1.7)
+  rubocop (~> 1.8)
   rubocop-rails (~> 2.9)
   rubocop-rspec (~> 2.1)
   rubocop-sequel (~> 0.1)
