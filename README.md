@@ -1,5 +1,4 @@
 [![test](https://github.com/kranzky/punk/workflows/test/badge.svg)](https://github.com/kranzky/punk/actions?query=workflow%3Atest)
-[![ship](https://github.com/kranzky/punk/workflows/ship/badge.svg)](https://github.com/kranzky/punk/actions?query=workflow%3Aship)
 [![Gem Version](https://badge.fury.io/rb/punk.svg)](https://badge.fury.io/rb/punk)
 
 # Punk!
