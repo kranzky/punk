@@ -1,12 +1,9 @@
 name: ship
 
 on:
-  workflow_run:
-    workflows: ['disabled']
-    branches:
-      - main
+  release:
     types:
-      - completed
+      - published
 
 jobs:
   ship:
