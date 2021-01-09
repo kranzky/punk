@@ -9,9 +9,8 @@ Punk! is an omakase web framework for rapid prototyping.
 ## Release Process
 
 1. `rake version:bump:whatever`
-2. `rake gemspec:release BRANCH=main`
-3. `rake git:release BRANCH=main`
-4. Create new release on GitHub to trigger ship workflow
+2. `rake git:release BRANCH=main`
+3. Create new release on GitHub to trigger ship workflow
 
 ## Copyright
 
