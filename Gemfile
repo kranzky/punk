@@ -81,6 +81,7 @@ gem 'swagger_yard', '~> 1.0'
 gem 'activesupport', '~> 6.1'
 
 # Monitoring
+# TODO: migrate to sentry-ruby
 gem 'sentry-raven', '~> 3.1'
 gem 'skylight', '~> 4.3'
 
