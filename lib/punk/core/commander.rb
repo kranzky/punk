@@ -74,10 +74,13 @@ command 'db migrate' do |c|
     say('Migrating db...')
     PUNK.boot
     Sequel.extension :migration
-    if options.relative.nil?
-      Sequel::Migrator.run(PUNK.db, File.join(PUNK.get.app.path, 'migrations'))
-    else
-      Sequel::Migrator.run(PUNK.db, File.join(PUNK.get.app.path, 'migrations'), relative: options.relative)
+    migrations_path = File.join(PUNK.get.app.path, 'migrations')
+    if File.exist?(migrations_path)
+      if options.relative.nil?
+        Sequel::Migrator.run(PUNK.db, migrations_path)
+      else
+        Sequel::Migrator.run(PUNK.db, migrations_path, relative: options.relative)
+      end
     end
     database = File.basename(PUNK.get.db.url)
     `pg_dump #{database} --schema-only > schema.psql`
