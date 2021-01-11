@@ -97,7 +97,6 @@ end
 
 # Testing
 group :test do
-  gem 'capybara', '~> 3.34'
   gem 'coveralls', '~> 0.8'
   gem 'factory_bot', '~> 6.1'
   gem 'faker', '~> 2.15'
@@ -108,7 +107,6 @@ group :test do
   gem 'rubocop-rails', '~> 2.9'
   gem 'rubocop-rspec', '~> 2.1'
   gem 'rubocop-sequel', '~> 0.1'
-  gem 'selenium-webdriver', '~> 3.142'
   gem 'timecop', '~> 0.9'
   gem 'vcr', '~> 6.0'
   gem 'webmock', '~> 3.11'

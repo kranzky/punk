@@ -24,8 +24,6 @@ require 'timecop'
 require 'securerandom'
 require 'vcr'
 require 'rack/test'
-require 'capybara/rspec'
-require "selenium/webdriver"
 
 Faker::Config.locale = 'en-US'
 
@@ -41,13 +39,6 @@ end
 PUNK.init(task: 'spec', config: { app: { name: 'Punk Test' } }).exec
 
 Sidekiq.logger = SemanticLogger['PUNK::SKQ']
-
-Capybara.app = PUNK.app
-Capybara.register_driver :headless_chrome do |app|
-  capabilities = Selenium::WebDriver::Remote::Capabilities.chrome(chromeOptions: { args: %w[headless disable-gpu] })
-  Capybara::Selenium::Driver.new app, browser: :chrome, desired_capabilities: capabilities
-end
-Capybara.javascript_driver = :headless_chrome
 
 RSpec.shared_context 'Punk' do # rubocop:disable RSpec/ContextWording
   include Rack::Test::Methods
