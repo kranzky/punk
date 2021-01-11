@@ -8,7 +8,6 @@ module PUNK
     def validate
       validates_presence :group
       validates_presence :user
-      validates_parse_id :parse_id, allow_blank: true
     end
 
     def to_s

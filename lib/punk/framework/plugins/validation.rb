@@ -28,20 +28,6 @@ module PUNK
           end
         end
 
-        def validates_parse_id(atts, opts={})
-          default = { message: "is not a Parse ID" }
-          validatable_attributes(atts, default.merge(opts)) do |_name, value, message|
-            message unless /^[[:alnum:]]{10}$/.match(value)
-          end
-        end
-
-        def validates_subdomain(atts, opts={})
-          default = { message: "is not a subdomain" }
-          validatable_attributes(atts, default.merge(opts)) do |_name, value, message|
-            message unless /^[A-Za-z0-9](?:[A-Za-z0-9\-]{0,61}[A-Za-z0-9])?$/.match(value)
-          end
-        end
-
         def validates_state(name, state)
           errors.add(name, "is not in #{state} state") unless self[name].send("#{state}?")
         end

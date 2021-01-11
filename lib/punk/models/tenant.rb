@@ -14,11 +14,6 @@ module PUNK
     def validate
       validates_presence :name
       validates_url :icon, allow_blank: true
-      validates_presence :subdomain
-      validates_subdomain :subdomain
-      validates_presence :portal_id
-      validates_integer :portal_id
-      validates_unique :portal_id
     end
   end
 end

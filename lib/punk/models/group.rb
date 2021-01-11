@@ -15,7 +15,6 @@ module PUNK
       validates_presence :tenant
       validates_presence :name
       validates_url :icon, allow_blank: true
-      validates_parse_id :parse_id, allow_blank: true
     end
   end
 end

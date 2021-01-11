@@ -89,11 +89,6 @@ module Helpers
 end
 
 FactoryBot.define do
-  sequence :parse_id do
-    lookup = ('a'..'z').to_a + ('A'..'Z').to_a + ('0'..'9').to_a
-    10.times.map { lookup.sample }.join
-  end
-
   sequence :phone do
     phone = "+1#{Phony.normalize(Faker::PhoneNumber.cell_phone)}" until Phony.plausible?(phone)
     phone
