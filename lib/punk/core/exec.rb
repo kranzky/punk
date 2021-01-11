@@ -32,6 +32,7 @@ end
 PUNK.inject :loader, :app
 
 ['actions', 'models', 'views', 'services', 'workers'].each do |dir|
+  PUNK.require_all(File.join(__dir__, '..', dir))
   PUNK.require_all(File.join(PUNK.get.app.path, dir))
 end
 
