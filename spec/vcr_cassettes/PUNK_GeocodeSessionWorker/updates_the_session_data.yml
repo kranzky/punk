@@ -1,0 +1,57 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://api.ipstack.com/42.221.129.61?access_key=8125be66761ffcad1604896a17d00ac4
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Tue, 12 Jan 2021 09:12:13 GMT
+      Content-Type:
+      - application/json; Charset=UTF-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Set-Cookie:
+      - __cfduid=df0fa25d4e0073142f3e466cbb8e9237d1610442733; expires=Thu, 11-Feb-21
+        09:12:13 GMT; path=/; domain=.ipstack.com; HttpOnly; SameSite=Lax
+      X-Apilayer-Transaction-Id:
+      - caef65a2-5cd1-4be2-9d01-a3f045f5e011
+      Access-Control-Allow-Methods:
+      - GET, HEAD, POST, PUT, PATCH, DELETE, OPTIONS
+      Access-Control-Allow-Origin:
+      - "*"
+      X-Request-Time:
+      - '0.014'
+      Cf-Cache-Status:
+      - DYNAMIC
+      Cf-Request-Id:
+      - '0797770e3300003e76e7ab3000000001'
+      Report-To:
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report?s=Uenx5X7lc5Ezh895Wc50n0Isr6maHO6FOA%2BRfJjJmgQiXBdHDhrhjBNxBsssKN178ozv9zvrsBtroUCIEdQIEf9QvpWMnfD3bVh1gLHHV44%3D"}],"group":"cf-nel","max_age":604800}'
+      Nel:
+      - '{"report_to":"cf-nel","max_age":604800}'
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 6105c129e8443e76-ADL
+    body:
+      encoding: ASCII-8BIT
+      string: '{"ip":"42.221.129.61","type":"ipv4","continent_code":"AS","continent_name":"Asia","country_code":"CN","country_name":"China","region_code":"BJ","region_name":"Beijing","city":"Beijing","zip":"100038","latitude":39.912288665771484,"longitude":116.3658676147461,"location":{"geoname_id":1816670,"capital":"Beijing","languages":[{"code":"zh","name":"Chinese","native":"\u4e2d\u6587"}],"country_flag":"http:\/\/assets.ipstack.com\/flags\/cn.svg","country_flag_emoji":"\ud83c\udde8\ud83c\uddf3","country_flag_emoji_unicode":"U+1F1E8
+        U+1F1F3","calling_code":"86","is_eu":false}}'
+  recorded_at: Thu, 22 Sep 2022 09:28:13 GMT
+recorded_with: VCR 6.0.0

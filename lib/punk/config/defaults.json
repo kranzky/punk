@@ -30,6 +30,9 @@
     "api_key": "$USERSTACK_API_KEY",
     "use_ssl": false
   },
+  "ipstack": {
+    "api_key": "$IPSTACK_ACCESS_KEY"
+  },
   "db": {
     "url": "$DATABASE_URL"
   },

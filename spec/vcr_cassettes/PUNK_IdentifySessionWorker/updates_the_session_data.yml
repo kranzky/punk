@@ -1,0 +1,112 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://api.userstack.com/detect?access_key=a4b1af0fb201d34a6d5e457c6b7adb00&ua=Mozilla/5.0%20(Windows%20NT%20x.y%3B%20Win64%3B%20x64%3B%20rv:10.0)%20Gecko/20100101%20Firefox/10.0
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Userstack gem/0.1.0
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Tue, 12 Jan 2021 09:12:14 GMT
+      Content-Type:
+      - application/json; Charset=UTF-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Set-Cookie:
+      - __cfduid=db0548b42a779266f4790ea8166bdd4581610442733; expires=Thu, 11-Feb-21
+        09:12:13 GMT; path=/; domain=.userstack.com; HttpOnly; SameSite=Lax
+      X-Apilayer-Transaction-Id:
+      - 454d0588-d787-4d01-b289-5a0038a25ee7
+      Access-Control-Allow-Methods:
+      - GET, HEAD, POST, PUT, PATCH, DELETE, OPTIONS
+      Access-Control-Allow-Origin:
+      - "*"
+      X-Request-Time:
+      - '0.078'
+      Cf-Cache-Status:
+      - DYNAMIC
+      Cf-Request-Id:
+      - '079777114700003e638fb08000000001'
+      Report-To:
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report?s=pLrm5k%2Fi9dtcefUXSTR6PXZbtnMZKqUzyi02QEWLC47MbuX678rfUazHnI2eSEecDBP04Z058W04qlR%2FeqM7g1x6NblI0fMkzM4Prk76ikkanA%3D%3D"}],"group":"cf-nel","max_age":604800}'
+      Nel:
+      - '{"report_to":"cf-nel","max_age":604800}'
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 6105c12ed9223e63-ADL
+    body:
+      encoding: ASCII-8BIT
+      string: '{"ua":"Mozilla\/5.0 (Windows NT x.y; Win64; x64; rv:10.0) Gecko\/20100101
+        Firefox\/10.0","type":"browser","brand":null,"name":null,"url":"https:\/\/www.mozilla.org\/","os":{"name":"Windows","code":"windows","url":"https:\/\/en.wikipedia.org\/wiki\/Windows","family":"Windows","family_code":"windows","family_vendor":"Microsoft
+        Corporation.","icon":"https:\/\/assets.userstack.com\/icon\/os\/windows.png","icon_large":"https:\/\/assets.userstack.com\/icon\/os\/windows_big.png"},"device":{"is_mobile_device":false,"type":"desktop","brand":null,"brand_code":null,"brand_url":null,"name":null},"browser":{"name":"Firefox","version":"10.0","version_major":"10","engine":"Gecko"},"crawler":{"is_crawler":false,"category":null,"last_seen":null}}'
+  recorded_at: Thu, 22 Sep 2022 09:28:14 GMT
+- request:
+    method: get
+    uri: http://api.ipstack.com/92.177.45.168?access_key=8125be66761ffcad1604896a17d00ac4
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Tue, 12 Jan 2021 09:12:15 GMT
+      Content-Type:
+      - application/json; Charset=UTF-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Set-Cookie:
+      - __cfduid=d09629f587b5e96df54ed5c24f57106641610442734; expires=Thu, 11-Feb-21
+        09:12:14 GMT; path=/; domain=.ipstack.com; HttpOnly; SameSite=Lax
+      X-Apilayer-Transaction-Id:
+      - ed39795d-84f4-4260-85c9-356205d21f34
+      Access-Control-Allow-Methods:
+      - GET, HEAD, POST, PUT, PATCH, DELETE, OPTIONS
+      Access-Control-Allow-Origin:
+      - "*"
+      X-Request-Time:
+      - '0.014'
+      Cf-Cache-Status:
+      - DYNAMIC
+      Cf-Request-Id:
+      - '07977713f000003e5edc09b000000001'
+      Report-To:
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report?s=zwkDF9e6nBBIRQ9DRnQhJakXNshZyHSuVB0GDGhrqPJBADBFWnsUL6pQU0eXUHnxouMS5Ec%2Fzd%2BJSe4NZXkogkQ1QCR1vil1gaEo2USlO%2Fs%3D"}],"group":"cf-nel","max_age":604800}'
+      Nel:
+      - '{"report_to":"cf-nel","max_age":604800}'
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 6105c1331d423e5e-ADL
+    body:
+      encoding: ASCII-8BIT
+      string: '{"ip":"92.177.45.168","type":"ipv4","continent_code":"EU","continent_name":"Europe","country_code":"ES","country_name":"Spain","region_code":"CT","region_name":"Catalonia","city":"Tarragona","zip":"43002","latitude":41.1220588684082,"longitude":1.249400019645691,"location":{"geoname_id":3108288,"capital":"Madrid","languages":[{"code":"es","name":"Spanish","native":"Espa\u00f1ol"},{"code":"eu","name":"Basque","native":"Euskara"},{"code":"ca","name":"Catalan","native":"Catal\u00e0"},{"code":"gl","name":"Galician","native":"Galego"},{"code":"oc","name":"Occitan","native":"Occitan"}],"country_flag":"http:\/\/assets.ipstack.com\/flags\/es.svg","country_flag_emoji":"\ud83c\uddea\ud83c\uddf8","country_flag_emoji_unicode":"U+1F1EA
+        U+1F1F8","calling_code":"34","is_eu":true}}'
+  recorded_at: Thu, 22 Sep 2022 09:28:15 GMT
+recorded_with: VCR 6.0.0

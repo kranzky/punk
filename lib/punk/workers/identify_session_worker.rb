@@ -21,7 +21,7 @@ module PUNK
 
       raise if result[:success] == false || result[:type].nil?
 
-      session.update(client: session.client.merge(
+      session.update(data: session.data.merge(
         os: {
           name: result[:os][:name],
           family: result[:os][:family],

@@ -47,7 +47,7 @@ gem 'aasm', '~> 5.1'
 
 # Authentication
 gem 'http-accept', '~> 2.1'
-gem 'maxmind-db', '~> 1.1'
+gem 'ipstack', '~> 0.1'
 gem 'rbnacl', '~> 7.1'
 gem 'userstack', '~> 0.1'
 

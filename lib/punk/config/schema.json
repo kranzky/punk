@@ -32,6 +32,9 @@
     "api_key": "String",
     "use_ssl": "Flag"
   },
+  "ipstack": {
+    "api_key": "String"
+  },
   "log": {
     "enabled!": "Flag",
     "type!": "Enum(stdout, stderr, file)",

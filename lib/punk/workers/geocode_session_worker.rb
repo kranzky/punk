@@ -10,37 +10,35 @@ module PUNK
     end
 
     def process
-      require 'maxmind/db'
+      require 'ipstack'
 
       session = Session[session_id]
       return if session.blank?
 
-      path = 'tmp/GeoLite2-City.mmdb'
-      GeoIPUpdateWorker.perform_now unless File.exist?(path)
-      raise unless File.exist?(path)
-
       ip_address = session.remote_addr.to_s
       return if ip_address == '127.0.0.1'
 
-      # TODO: cache IP lookup
-      client = MaxMind::DB.new(path, mode: MaxMind::DB::MODE_MEMORY)
-      result = client.get(ip_address)
+      return if PUNK.get.ipstack.api_key.blank?
+      result = Ipstack::API.standard(ip_address).deep_symbolize_keys
 
       raise if result.blank?
 
-      result.deep_symbolize_keys!
-      city = result[:city][:names][:en] if result[:city].present?
-      region = result[:subdivisions].map { |s| s[:names][:en] }.join(', ') if result[:subdivisions].present?
-      session.update(client: session.client.merge(
-        tz: result[:location][:time_zone],
+      timezone = result[:time_zone][:code] if result[:time_zone].present?
+      language = result[:location][:languages].first[:code] if result[:location].present? && result[:location][:languages].present?
+      currency = result[:currency][:code] if result[:currency].present?
+      session.update(data: session.data.merge(
+        tz: timezone,
+        lang: language,
+        currency: currency,
         geo: {
-          lat: result[:location][:latitude],
-          lng: result[:location][:longitude]
+          lat: result[:latitude],
+          lng: result[:longitude]
         },
         location: {
-          city: city,
-          country: result[:country][:names][:en],
-          region: region
+          city: result[:city],
+          region: result[:region_name],
+          country: result[:country_name],
+          continent: result[:continent_name]
         }
       ))
 
