@@ -1,0 +1,8 @@
+doctype html
+html
+  head
+    title Tenants
+  body
+    - tenants.each do |tenant|
+      h1= tenant.name
+      img src= tenant.icon

@@ -1,0 +1,4 @@
+csv << ['ID','NAME','ICON','EMAIL','PHONE','TITLE','COMPANY','WEBSITE','LOCATION']
+users.each do |user|
+  csv << [user.id, user.name, user.icon, user.email, user.phone, user.profile[:professional][:title], user.profile[:professional][:company], user.profile[:professional][:website], user.profile[:professional][:location]]
+end

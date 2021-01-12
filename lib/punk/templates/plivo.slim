@@ -1,0 +1,16 @@
+doctype html
+html
+  head
+    title Plivo
+  body
+    h2 Plivo
+    - plivo = PUNK.cache.get(:plivo) || []
+    - plivo.each do |message|
+      h4= message[:sent]
+      dl
+        dt from
+        dd= message[:from]
+        dt to
+        dd= message[:to]
+        dt body
+        dd= message[:body]
