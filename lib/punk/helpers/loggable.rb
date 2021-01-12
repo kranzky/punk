@@ -22,7 +22,7 @@ module PUNK
 
     def exception(e, extra={})
       if ENV.key?('SENTRY_DSN')
-        ::Raven.capture_exception(
+        ::Sentry.capture_exception(
           e,
           message: e.message,
           extra: extra,
