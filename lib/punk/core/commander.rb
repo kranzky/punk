@@ -10,7 +10,7 @@ command :test do |c|
     end
     ENV.delete_if { |name, _value| name =~ /^PUNK_/ }
     system('rubocop') &&
-      # system('quasar build -m pwa') && TODO
+      system('quasar build -m pwa') &&
       system('PUNK_ENV=test rspec')
     exit $CHILD_STATUS.exitstatus # rubocop:disable Rails/Exit
   end
