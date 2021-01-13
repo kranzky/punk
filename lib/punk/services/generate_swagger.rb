@@ -6,15 +6,15 @@ module PUNK
       path = File.join(PUNK.get.app.path, '..', 'www', 'swagger.json')
       raise InternalServerError, 'swagger.json already exists' if File.exist?(path) && !PUNK.env.test?
       require 'swagger_yard'
-      require_relative '../../lib/railroad/helpers/swagger'
+      require_relative '../helpers/swagger'
       SwaggerYard.register_custom_yard_tags!
       SwaggerYard.configure do |config|
         config.api_version = PUNK.version
         config.title = PUNK.get.app.name
         config.description = PUNK.get.app.description
         config.api_base_path = PUNK.get.app.url
-        config.controller_path = File.join('app', 'routes', '**', '*')
-        config.model_path = [File.join('app', 'models', '**', '*'), File.join('lib', 'railroad', 'views', '**', '*')]
+        config.controller_path = [File.join(PUNK.get.app.path, 'routes', '**', '*'), File.join(__dir__, '..', 'routes', '**', '*')]
+        config.model_path = [File.join(__dir__, '..', 'models', '**', '*'), File.join(__dir__, '..', 'views', '**', '*'), File.join(PUNK.get.app.path, 'models', '**', '*')]
       end
       spec = SwaggerYard::OpenAPI.new
       blob = JSON.pretty_generate(spec.to_h)

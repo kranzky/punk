@@ -61,7 +61,7 @@ RSpec.shared_context 'Punk' do # rubocop:disable RSpec/ContextWording
       )
     response = ActiveSupport::JSON.decode(response[-1].first).deep_symbolize_keys
     slug = response[:slug]
-    SendSmsWorker.drain
+    PUNK::SendSmsWorker.drain
     sms = PUNK.cache.get(:plivo).first
     PUNK.app.call(
       "REQUEST_METHOD" => "PATCH",

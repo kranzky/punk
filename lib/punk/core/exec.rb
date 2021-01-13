@@ -23,6 +23,7 @@ end
 
 PUNK::Interface.register(:app) do
   require_relative 'app'
+  PUNK.require_all(File.join(__dir__, '..', 'routes'))
   PUNK.require_all(File.join(PUNK.get.app.path, 'routes'))
   retval = PUNK.get.app.reloadable ? PUNK.loader : PUNK::App.freeze.app
   SemanticLogger.flush

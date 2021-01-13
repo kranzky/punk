@@ -10,7 +10,7 @@ PUNK::Command.create "list" do
     case args.join(' ')
     when 'routes'
       PUNK.app
-      PUNK::App.route_list
+      PUNK::App.route_list # TODO: exclude PUNK routes by default
     when 'actions'
       ObjectSpace.each_object(PUNK::Action.singleton_class).map(&:name).reject { |name| _hide?(name) }
     when 'models'

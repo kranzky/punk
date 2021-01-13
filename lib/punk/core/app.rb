@@ -23,7 +23,7 @@ module PUNK
 
   ROUTES = Tempfile.new("routes.json").path
   PUNK.profile_info("generate", path: ROUTES) do
-    system "roda-parse_routes -f #{ROUTES} #{File.expand_path(File.join(PUNK.get.app.path, 'routes', '*'))}"
+    system "roda-parse_routes -f #{ROUTES} #{File.expand_path(File.join(PUNK.get.app.path, 'routes', '*'))} #{File.expand_path(File.join(__dir__, '..', 'routes', '*'))}"
   end
 
   class App < Roda
@@ -71,7 +71,7 @@ module PUNK
     plugin :slash_path_empty
     plugin :multi_route
     plugin :type_routing, types: { csv: 'text/csv' }, default_type: :json
-    # plugin :route_list, file: ROUTES TODO
+    plugin :route_list, file: ROUTES
     plugin :disallow_file_uploads
     plugin :public, root: PUBLIC
 
@@ -88,8 +88,7 @@ module PUNK
 
     def require_session!
       begin
-        # TODO
-        @_current_session = nil # Session[request.session['session_id']]
+        @_current_session = Session[request.session['session_id']]
         if @_current_session&.active?
           @_current_session.touch
         else
@@ -192,9 +191,8 @@ module PUNK
       name = "#{request.request_method} #{request.path}"
       logger.info "Started #{name} for #{request.ip}", params.deep_symbolize_keys.sanitize.inspect
       logger.trace request.env['HTTP_USER_AGENT']
-      # TODO
-      # logger.info "Started #{name} for #{request.ip || Session.default_values[:remote_addr].to_s}", params.deep_symbolize_keys.sanitize.inspect
-      # logger.trace request.env['HTTP_USER_AGENT'] || Session.default_values[:user_agent]
+      logger.info "Started #{name} for #{request.ip || Session.default_values[:remote_addr].to_s}", params.deep_symbolize_keys.sanitize.inspect
+      logger.trace request.env['HTTP_USER_AGENT'] || Session.default_values[:user_agent]
       logger.trace request.env['HTTP_COOKIE']
       logger.push_tags(name)
       _set_cookie(request.env)
