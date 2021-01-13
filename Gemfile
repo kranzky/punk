@@ -70,7 +70,7 @@ gem 'slim', '~> 4.1'
 
 # JSON Rendering
 gem 'jbuilder', '~> 2.10'
-gem 'oj', '~> 3.10'
+gem 'oj', '~> 3.11'
 gem 'tilt-jbuilder', '~> 0.7'
 
 # Documentation Generation
