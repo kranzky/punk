@@ -71,7 +71,11 @@ module PUNK
         define_method(:options) do |opt|
           punk_command = PUNK.store.commands[match]
           punk_command.instance_variable_get(:@options).each_value do |option|
-            opt.on option[:shortcut], option[:name], option[:description], argument: true, as: option[:type]
+            if option[:type].present?
+              opt.on option[:shortcut], option[:name], option[:description], argument: true, as: option[:type]
+            else
+              opt.on option[:shortcut], option[:name], option[:description]
+            end
           end
         end
         define_method(:process) do
