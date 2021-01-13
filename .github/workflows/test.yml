@@ -8,6 +8,8 @@ jobs:
     env:
       PUNK_ENV: test
       COVERALLS_REPO_TOKEN: "${{secrets.COVERALLS_REPO_TOKEN}}"
+      IPSTACK_ACCESS_KEY: "${{secrets.IPSTACK_ACCESS_KEY}}"
+      USERSTACK_API_KEY: "${{secrets.USERSTACK_API_KEY}}"
       DATABASE_URL: "postgres://postgres:postgres@localhost/punk_test"
 
     services:
