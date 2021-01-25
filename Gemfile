@@ -62,14 +62,14 @@ gem 'mailgun-ruby', '~> 1.2'
 gem 'plivo', '~> 4.15'
 
 # HTTP Framework
-gem 'roda', '~> 3.39'
+gem 'roda', '~> 3.40'
 gem 'roda-route_list', '~> 2.1'
 
 # HTML Rendering
 gem 'slim', '~> 4.1'
 
 # JSON Rendering
-gem 'jbuilder', '~> 2.10'
+gem 'jbuilder', '~> 2.11'
 gem 'oj', '~> 3.11'
 gem 'tilt-jbuilder', '~> 0.7'
 
