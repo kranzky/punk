@@ -3,7 +3,7 @@
 source 'https://rubygems.org'
 
 # Startup
-gem 'bootsnap', '~> 1.5'
+gem 'bootsnap', '~> 1.7'
 
 # Dependency Injection
 gem 'dim', '~> 1.2'
@@ -26,7 +26,7 @@ gem 'commander', '~> 4.5'
 gem 'pry', '~> 0.13'
 
 # Rack Server
-gem 'puma', '~> 5.1'
+gem 'puma', '~> 5.2'
 gem 'rack-cors', '~> 1.1'
 gem 'rack-protection', '~> 2.1'
 gem 'rack-ssl-enforcer', '~> 0.2'
@@ -40,7 +40,7 @@ gem 'pg', '~> 1.2'
 gem 'sequel_pg', '~> 1.14'
 
 # ORM
-gem 'sequel', '~> 5.40'
+gem 'sequel', '~> 5.41'
 
 # State Machine
 gem 'aasm', '~> 5.1'
@@ -91,7 +91,7 @@ gem 'phony', '~> 2.18'
 # Development
 group :development do
   gem 'bundler', '~> 1.17'
-  gem 'gemfile_updater', '~> 0.1'
+  gem 'gemfile_updater', '~> 0.1.0'
   gem 'juwelier', '~> 2.4'
 end
 
@@ -103,10 +103,10 @@ group :test do
   gem 'rack-test', '~> 1.1'
   gem 'rspec', '~> 3.10'
   gem 'rspec-its', '~> 1.3'
-  gem 'rubocop', '~> 1.8'
+  gem 'rubocop', '~> 1.9'
   gem 'rubocop-rails', '~> 2.9'
   gem 'rubocop-rspec', '~> 2.1'
-  gem 'rubocop-sequel', '~> 0.1'
+  gem 'rubocop-sequel', '~> 0.2'
   gem 'timecop', '~> 0.9'
   gem 'vcr', '~> 6.0'
   gem 'webmock', '~> 3.11'
