@@ -81,8 +81,8 @@ gem 'swagger_yard', '~> 1.0'
 gem 'activesupport', '~> 6.1'
 
 # Monitoring
-gem 'sentry-ruby', '~> 4.1'
-gem 'sentry-sidekiq', '~> 4.1'
+gem 'sentry-ruby', '~> 4.2'
+gem 'sentry-sidekiq', '~> 4.2'
 gem 'skylight', '~> 4.3'
 
 # Phone Numbers
@@ -91,7 +91,7 @@ gem 'phony', '~> 2.18'
 # Development
 group :development do
   gem 'bundler', '~> 1.17'
-  gem 'gemfile_updater', '~> 0.1.0'
+  gem 'gemfile_updater', '~> 0.1'
   gem 'juwelier', '~> 2.4'
 end
 
@@ -105,7 +105,7 @@ group :test do
   gem 'rspec-its', '~> 1.3'
   gem 'rubocop', '~> 1.9'
   gem 'rubocop-rails', '~> 2.9'
-  gem 'rubocop-rspec', '~> 2.1'
+  gem 'rubocop-rspec', '~> 2.2'
   gem 'rubocop-sequel', '~> 0.2'
   gem 'timecop', '~> 0.9'
   gem 'vcr', '~> 6.0'
