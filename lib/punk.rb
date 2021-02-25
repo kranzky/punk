@@ -5,12 +5,11 @@ require 'bootsnap'
 env = ENV.fetch('PUNK_ENV') { ENV.store('PUNK_ENV', 'development') }
 
 if defined?(Bootsnap)
+  # TODO: update gem and check setup options
   Bootsnap.setup(
     cache_dir: 'tmp/cache',
     development_mode: env == 'development',
     load_path_cache: true,
-    autoload_paths_cache: true,
-    disable_trace: false,
     compile_cache_iseq: true,
     compile_cache_yaml: true
   )

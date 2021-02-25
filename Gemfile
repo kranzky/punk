@@ -59,10 +59,10 @@ gem 'sidekiq-cron', '~> 1.2'
 gem 'mailgun-ruby', '~> 1.2'
 
 # SMS
-gem 'plivo', '~> 4.15'
+gem 'plivo', '~> 4.16'
 
 # HTTP Framework
-gem 'roda', '~> 3.40'
+gem 'roda', '~> 3.41'
 gem 'roda-route_list', '~> 2.1'
 
 # HTML Rendering
@@ -99,11 +99,11 @@ end
 group :test do
   gem 'coveralls', '~> 0.8'
   gem 'factory_bot', '~> 6.1'
-  gem 'faker', '~> 2.15'
+  gem 'faker', '~> 2.16'
   gem 'rack-test', '~> 1.1'
   gem 'rspec', '~> 3.10'
   gem 'rspec-its', '~> 1.3'
-  gem 'rubocop', '~> 1.9'
+  gem 'rubocop', '~> 1.10'
   gem 'rubocop-rails', '~> 2.9'
   gem 'rubocop-rspec', '~> 2.2'
   gem 'rubocop-sequel', '~> 0.2'
