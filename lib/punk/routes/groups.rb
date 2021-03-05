@@ -3,7 +3,7 @@
 # @resource Groups
 #
 # Each tenant can have many groups.
-PUNK.route('groups') do
+PUNK.route("groups") do
   require_session!
   require_tenant!
 

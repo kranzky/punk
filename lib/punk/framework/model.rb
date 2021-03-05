@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'aasm'
+require "aasm"
 
 AASM::Configuration.hide_warnings = true
 
@@ -22,17 +22,18 @@ module PUNK
 
     plugin PUNK::Plugins::Validation
 
-    def validate; end
+    def validate
+    end
 
     def inspect
       id.present? ? "#{id}|#{self}" : to_s
     end
 
-    def self.sample_dataset(count=1)
-      order(Sequel.lit('random()')).limit(count)
+    def self.sample_dataset(count = 1)
+      order(Sequel.lit("random()")).limit(count)
     end
 
-    def self.sample(count=1)
+    def self.sample(count = 1)
       query = sample_dataset(count)
       count == 1 ? query.first : query.all
     end

@@ -8,7 +8,7 @@ describe PUNK::Session do
   it "is assigned a uuid on save" do
     session = build(:session)
     expect(session.id).to be_nil
-    session.save
+    session.save_changes
     expect(valid_uuid?(session.id)).to be(true)
   end
 
@@ -21,7 +21,7 @@ describe PUNK::Session do
   it "must belong to an identity" do
     session = build(:session, identity: nil)
     expect(session.valid?).to be(false)
-    expect(session.errors[:identity].first).to eq('is not present')
+    expect(session.errors[:identity].first).to eq("is not present")
   end
 
   it "may have a user" do
@@ -32,8 +32,8 @@ describe PUNK::Session do
   end
 
   it "can contain client data" do
-    identity = create(:session, data: { foo: 'bar' })
-    expect(identity.data[:foo]).to eq('bar')
+    identity = create(:session, data: {foo: "bar"})
+    expect(identity.data[:foo]).to eq("bar")
   end
 
   it "permits only three validation attempts" do

@@ -8,7 +8,7 @@ describe PUNK::Group do
   it "is assigned a uuid on save" do
     group = build(:group)
     expect(group.id).to be_nil
-    group.save
+    group.save_changes
     expect(valid_uuid?(group.id)).to be(true)
   end
 
@@ -21,7 +21,7 @@ describe PUNK::Group do
   it "is invalid without a name" do
     group = build(:group, name: nil)
     expect(group.valid?).to be(false)
-    expect(group.errors[:name].first).to eq('is not present')
+    expect(group.errors[:name].first).to eq("is not present")
   end
 
   it "is valid without an icon" do
@@ -32,13 +32,13 @@ describe PUNK::Group do
   it "is invalid if the icon is not a URL" do
     group = build(:group, icon: Faker::Alphanumeric.alpha)
     expect(group.valid?).to be(false)
-    expect(group.errors[:icon].first).to eq('is not a URL')
+    expect(group.errors[:icon].first).to eq("is not a URL")
   end
 
   it "must belong to a tenant" do
     group = build(:group, tenant: nil)
     expect(group.valid?).to be(false)
-    expect(group.errors[:tenant].first).to eq('is not present')
+    expect(group.errors[:tenant].first).to eq("is not present")
   end
 
   it "can have multiple members" do

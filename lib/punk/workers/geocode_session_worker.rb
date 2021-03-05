@@ -10,13 +10,13 @@ module PUNK
     end
 
     def process
-      require 'ipstack'
+      require "ipstack"
 
       session = Session[session_id]
       return if session.blank?
 
       ip_address = session.remote_addr.to_s
-      return if ip_address == '127.0.0.1'
+      return if ip_address == "127.0.0.1"
 
       return if PUNK.get.ipstack.api_key.blank?
       result = Ipstack::API.standard(ip_address).deep_symbolize_keys
@@ -42,7 +42,7 @@ module PUNK
         }
       ))
 
-      session.save
+      session.save_changes
     end
   end
 end

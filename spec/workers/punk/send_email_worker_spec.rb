@@ -7,7 +7,7 @@ describe PUNK::SendEmailWorker do
   let(:template) { Faker::Alphanumeric.alpha }
 
   before do
-    require 'mailgun-ruby'
+    require "mailgun-ruby"
     Mailgun::Client.deliveries.clear
   end
 

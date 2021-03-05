@@ -2,6 +2,6 @@
 
 class Hash
   def sanitize
-    merge(slice(:password, :secret, 'password', 'secret').transform_values { "***" })
+    merge(slice(:password, :secret, "password", "secret").transform_values { "***" })
   end
 end

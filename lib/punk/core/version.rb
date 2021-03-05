@@ -2,6 +2,6 @@
 
 module PUNK
   def self.version
-    File.read(File.join(__dir__, '..', '..', '..', 'VERSION'))
+    File.read(File.join(__dir__, "..", "..", "..", "VERSION"))
   end
 end

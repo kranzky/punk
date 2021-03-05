@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
-require_relative '../../punk'
+require_relative "../../punk"
 
-require 'highline/import'
+require "highline/import"
 
-PUNK.init(task: 'console', config: { app: { name: 'Punk!' } }).exec
+PUNK.init(task: "console", config: {app: {name: "Punk!"}}).exec
 
 PUNK.commands(:pry)
 

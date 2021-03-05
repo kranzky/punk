@@ -17,8 +17,8 @@ module PUNK
 
     def process
       verify = ProveClaimService.run(session: session, secret: secret)
-      raise BadRequest, 'Secret is incorrect' unless verify.result == true
-      present Info, message: 'We have succesfully verified your identity.  Welcome to GroupFire!'
+      raise BadRequest, "Secret is incorrect" unless verify.result == true
+      present Info, message: "We have succesfully verified your identity.  Welcome to GroupFire!"
     end
   end
 end

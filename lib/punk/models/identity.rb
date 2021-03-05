@@ -2,7 +2,7 @@
 
 module PUNK
   class Identity < PUNK::Model
-    alias to_s claim
+    alias_method :to_s, :claim
 
     many_to_one :user
     one_to_many :sessions

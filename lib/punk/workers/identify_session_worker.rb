@@ -10,7 +10,7 @@ module PUNK
     end
 
     def process
-      require 'userstack'
+      require "userstack"
 
       session = Session[session_id]
       return if session.blank?

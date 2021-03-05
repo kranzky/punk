@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'semantic_logger'
+require "semantic_logger"
 
 module PUNK
   include SemanticLogger::Loggable
@@ -22,9 +22,9 @@ module PUNK
 
   SemanticLogger.default_level =
     case PUNK.store.args.task
-    when 'console', 'script'
+    when "console", "script"
       :info
-    when 'spec'
+    when "spec"
       :debug
     else
       :trace

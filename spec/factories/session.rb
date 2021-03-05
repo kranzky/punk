@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 FactoryBot.define do
-  factory :session, class: 'PUNK::Session' do
+  factory :session, class: "PUNK::Session" do
     to_create(&:save)
 
     identity

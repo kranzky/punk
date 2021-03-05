@@ -20,8 +20,8 @@ module PUNK
       self.class.profile_trace(name, **kwargs, &block)
     end
 
-    def exception(e, extra={})
-      if ENV.key?('SENTRY_DSN')
+    def exception(e, extra = {})
+      if ENV.key?("SENTRY_DSN")
         ::Sentry.capture_exception(
           e,
           message: e.message,
@@ -45,7 +45,7 @@ module PUNK
         if trim || ignore.any? { |path| line =~ /#{path}/ }
           unless skip
             skip = true
-            '...'
+            "..."
           end
         else
           skip = false

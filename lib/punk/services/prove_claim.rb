@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'rbnacl'
+require "rbnacl"
 
 module PUNK
   class ProveClaimService < Service

@@ -25,13 +25,13 @@ module PUNK
         plivo.prepend(message)
         PUNK.cache.set(:plivo, plivo)
         unless PUNK.env.test?
-          require 'launchy'
-          Launchy.open("#{PUNK.get.app.url || 'http://localhost:3000'}/plivo.html")
+          require "launchy"
+          Launchy.open("#{PUNK.get.app.url || "http://localhost:3000"}/plivo.html")
         end
         return
       end
 
-      require 'plivo'
+      require "plivo"
 
       client = Plivo::RestClient.new(PUNK.get.plivo.auth_id, PUNK.get.plivo.auth_token)
       client.messages.create(PUNK.get.plivo.number, [to], body)

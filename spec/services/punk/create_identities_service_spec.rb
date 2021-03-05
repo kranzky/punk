@@ -6,7 +6,7 @@ describe PUNK::CreateIdentitiesService do
     create(:user, email: nil)
   end
 
-  it 'creates identities for users that are missing them' do
+  it "creates identities for users that are missing them" do
     expect(PUNK::Identity.count).to eq(0)
     described_class.run
     expect(PUNK::Identity.count).to eq(2)

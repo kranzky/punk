@@ -4,7 +4,7 @@ PUNK::Command.create "GET" do
   description "Perform a HTTP GET request"
 
   def process
-    path, query = args[0].split('?')
+    path, query = args[0].split("?")
     PUNK.app.call(
       "REQUEST_METHOD" => "GET",
       "PATH_INFO" => path,

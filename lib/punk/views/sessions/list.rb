@@ -10,13 +10,13 @@ module PUNK
     end
 
     def process
-      'sessions/list'
+      "sessions/list"
     end
 
     protected
 
     def _dir
-      File.join(__dir__, '..', '..', 'templates')
+      File.join(__dir__, "..", "..", "templates")
     end
   end
 end

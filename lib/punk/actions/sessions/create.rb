@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-require 'uri'
-require 'phony'
+require "uri"
+require "phony"
 
 module PUNK
   class CreateSessionAction < Action
@@ -56,7 +56,7 @@ module PUNK
         claim.downcase.strip
       when :phone
         phone = claim.strip
-        phone = "+1#{phone}" if phone !~ /^[+]/
+        phone = "+1#{phone}" unless /^[+]/.match?(phone)
         "+#{Phony.normalize(phone)}"
       end
     end

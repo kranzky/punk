@@ -8,13 +8,13 @@ describe PUNK::GroupUserMetadata do
   it "is invalid without a group" do
     group_user_metadata = build(:group_user_metadata, group: nil)
     expect(group_user_metadata.valid?).to be(false)
-    expect(group_user_metadata.errors[:group].first).to eq('is not present')
+    expect(group_user_metadata.errors[:group].first).to eq("is not present")
   end
 
   it "is invalid without a user" do
     group_user_metadata = build(:group_user_metadata, user: nil)
     expect(group_user_metadata.valid?).to be(false)
-    expect(group_user_metadata.errors[:user].first).to eq('is not present')
+    expect(group_user_metadata.errors[:user].first).to eq("is not present")
   end
 
   it "displays as the two IDs concatenated" do

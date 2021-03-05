@@ -7,24 +7,24 @@ module PUNK
       if PUNK.get.app.reloadable?
         PUNK.loader.require(path)
       else
-        Dir.glob(File.join(path, '**/*.rb')).sort.each { |file| require(file) }
+        Dir.glob(File.join(path, "**/*.rb")).sort.each { |file| require(file) }
       end
     end
   end
 end
 
 PUNK::Interface.register(:loader) do
-  require 'rack/unreloader'
+  require "rack/unreloader"
   raise PUNK::InternalServerError, "App is not reloadable" unless PUNK.get.app.reloadable?
   retval = Rack::Unreloader.new { PUNK::App }
-  require_relative './monkey_unreloader'
+  require_relative "./monkey_unreloader"
   retval
 end
 
 PUNK::Interface.register(:app) do
-  require_relative 'app'
-  PUNK.require_all(File.join(__dir__, '..', 'routes'))
-  PUNK.require_all(File.join(PUNK.get.app.path, 'routes'))
+  require_relative "app"
+  PUNK.require_all(File.join(__dir__, "..", "routes"))
+  PUNK.require_all(File.join(PUNK.get.app.path, "routes"))
   retval = PUNK.get.app.reloadable ? PUNK.loader : PUNK::App.freeze.app
   SemanticLogger.flush
   retval
@@ -32,8 +32,8 @@ end
 
 PUNK.inject :loader, :app
 
-['actions', 'models', 'views', 'services', 'workers'].each do |dir|
-  PUNK.require_all(File.join(__dir__, '..', dir))
+["actions", "models", "views", "services", "workers"].each do |dir|
+  PUNK.require_all(File.join(__dir__, "..", dir))
   PUNK.require_all(File.join(PUNK.get.app.path, dir))
 end
 

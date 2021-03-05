@@ -4,7 +4,7 @@ describe PUNK, "GET /swagger" do
   include_context "Punk"
 
   before do
-    get '/swagger'
+    get "/swagger"
   end
 
   it { is_expected.to be_successful }

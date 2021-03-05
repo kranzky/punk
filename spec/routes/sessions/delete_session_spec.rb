@@ -4,7 +4,7 @@ describe PUNK, "DELETE /sessions" do
   include_context "Punk"
 
   before do
-    delete '/sessions'
+    delete "/sessions"
   end
 
   it { is_expected.not_to be_successful }

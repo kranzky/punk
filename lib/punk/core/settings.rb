@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
-require 'dot_hash'
+require "dot_hash"
 
 module PUNK
   class Settings < DotHash::Settings
-    alias key? has_key?
+    alias_method :key?, :has_key?
 
     delegate :inspect, to: :_inspect_hash
 
@@ -13,9 +13,9 @@ module PUNK
       if match && key?(match[1]) && !key?(key)
         value = execute(match[1], *args, &block)
         case match[2]
-        when '?'
+        when "?"
           return value if value.is_a?(TrueClass) || value.is_a?(FalseClass)
-        when '!'
+        when "!"
           raise InternalServerError, "Value is nil: #{key}" if value.nil?
           return value
         end

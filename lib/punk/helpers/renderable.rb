@@ -1,15 +1,15 @@
 # frozen_string_literal: true
 
-require 'tilt'
+require "tilt"
 
 module PUNK
   module Renderable
     FORMATS =
       {
-        html: { renderer: :to_html, extension: 'slim' },
-        json: { renderer: :to_json, extension: 'jbuilder' },
-        csv: { renderer: :to_csv, extension: 'rcsv' },
-        xml: { renderer: :to_xml, extension: 'xml.slim' }
+        html: {renderer: :to_html, extension: "slim"},
+        json: {renderer: :to_json, extension: "jbuilder"},
+        csv: {renderer: :to_csv, extension: "rcsv"},
+        xml: {renderer: :to_xml, extension: "xml.slim"}
       }.freeze
 
     def template(name)
@@ -21,19 +21,19 @@ module PUNK
       send(FORMATS[format][:renderer])
     end
 
-    def to_html(options={})
+    def to_html(options = {})
       _render(:html, options)
     end
 
-    def to_json(options={})
+    def to_json(options = {})
       _render(:json, options)
     end
 
-    def to_csv(options={})
+    def to_csv(options = {})
       _render(:csv, options)
     end
 
-    def to_xml(options={})
+    def to_xml(options = {})
       _render(:xml, options)
     end
 
@@ -52,7 +52,7 @@ module PUNK
     protected
 
     def _dir
-      File.join(PUNK.get.app.path, 'templates')
+      File.join(PUNK.get.app.path, "templates")
     end
 
     private

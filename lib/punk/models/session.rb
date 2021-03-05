@@ -5,7 +5,7 @@ module PUNK
   # @property slug(required) [string] a unique identifier for the session while it is being challenged
   # @property message(required) [string] a message to be displayed to the user to let them know what to do
   class Session < PUNK::Model
-    alias to_s state
+    alias_method :to_s, :state
 
     many_to_one :identity
     one_through_one :user, join_table: :identities, left_key: :id, left_primary_key: :identity_id
@@ -38,27 +38,27 @@ module PUNK
 
     dataset_module do
       def created
-        where(state: 'created')
+        where(state: "created")
       end
 
       def pending
-        where(state: 'pending')
+        where(state: "pending")
       end
 
       def active
-        where(state: 'active')
+        where(state: "active")
       end
 
       def expired
-        where(state: 'expired')
+        where(state: "expired")
       end
 
       def deleted
-        where(state: 'deleted')
+        where(state: "deleted")
       end
 
       def expiring
-        where { Sequel.&({ state: ['created', 'pending'] }, (created_at < 5.minutes.ago)) }.or { Sequel.&({ state: 'active' }, ((updated_at < 1.month.ago) | (created_at < 1.year.ago))) }
+        where { Sequel.&({state: ["created", "pending"]}, (created_at < 5.minutes.ago)) }.or { Sequel.&({state: "active"}, ((updated_at < 1.month.ago) | (created_at < 1.year.ago))) }
       end
     end
 

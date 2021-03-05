@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'rbnacl'
+require "rbnacl"
 
 module PUNK
   class ChallengeClaimService < Service
@@ -25,13 +25,13 @@ module PUNK
       case identity.claim_type
       when :email
         SendEmailWorker.perform_async(
-          from: 'GroupFire Accounts <noreply@groupfire.com>',
+          from: "GroupFire Accounts <noreply@groupfire.com>",
           to: identity.claim,
-          subject: '[GroupFire] Verification Code',
-          template: 'verify',
+          subject: "[GroupFire] Verification Code",
+          template: "verify",
           tags: [:auth],
           variables: {
-            name: identity.user&.name || 'New User',
+            name: identity.user&.name || "New User",
             secret: secret
           }
         )

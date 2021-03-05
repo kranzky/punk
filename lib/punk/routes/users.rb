@@ -3,7 +3,7 @@
 # @resource Users
 #
 # Users can belong to many tenants and many groups.
-PUNK.route('users') do
+PUNK.route("users") do
   require_session!
   require_tenant!
 

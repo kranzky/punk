@@ -3,13 +3,13 @@
 module PUNK
   class PlivoStore < View
     def process
-      'plivo'
+      "plivo"
     end
 
     protected
 
     def _dir
-      File.join(__dir__, '..', 'templates')
+      File.join(__dir__, "..", "templates")
     end
   end
 end

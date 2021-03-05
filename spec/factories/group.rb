@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 FactoryBot.define do
-  factory :group, class: 'PUNK::Group' do
+  factory :group, class: "PUNK::Group" do
     to_create(&:save)
 
     tenant

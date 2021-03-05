@@ -1,17 +1,17 @@
 # frozen_string_literal: true
 
 PUNK::Command.create "generate" do
-  shortcut 'g'
+  shortcut "g"
   description "Generate routes, actions, models, views, services or workers"
 
   def process
-    case args.join(' ')
-    when 'route', 'action', 'model', 'view', 'service', 'worker', 'scaffold'
+    case args.join(" ")
+    when "route", "action", "model", "view", "service", "worker", "scaffold"
       "TBD"
-    when '', 'help'
+    when "", "help"
       "? specify one of: routes, actions, models, views, services, scaffold"
     else
-      "? unkown arguments: #{args.join(',')}"
+      "? unkown arguments: #{args.join(",")}"
     end
   end
 end

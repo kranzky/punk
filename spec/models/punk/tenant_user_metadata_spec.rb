@@ -8,13 +8,13 @@ describe PUNK::TenantUserMetadata do
   it "is invalid without a tenant" do
     tenant_user_metadata = build(:tenant_user_metadata, tenant: nil)
     expect(tenant_user_metadata.valid?).to be(false)
-    expect(tenant_user_metadata.errors[:tenant].first).to eq('is not present')
+    expect(tenant_user_metadata.errors[:tenant].first).to eq("is not present")
   end
 
   it "is invalid without a user" do
     tenant_user_metadata = build(:tenant_user_metadata, user: nil)
     expect(tenant_user_metadata.valid?).to be(false)
-    expect(tenant_user_metadata.errors[:user].first).to eq('is not present')
+    expect(tenant_user_metadata.errors[:user].first).to eq("is not present")
   end
 
   it "displays as the two IDs concatenated" do

@@ -6,7 +6,7 @@ module PUNK
   # @property name(required) [string] the name of the group
   # @property icon(required) [string] an image URL
   class Group < PUNK::Model
-    alias to_s name
+    alias_method :to_s, :name
 
     many_to_one :tenant
     many_to_many :users

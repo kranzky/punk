@@ -1,14 +1,14 @@
 # frozen_string_literal: true
 
-require 'bootsnap'
+require "bootsnap"
 
-env = ENV.fetch('PUNK_ENV') { ENV.store('PUNK_ENV', 'development') }
+env = ENV.fetch("PUNK_ENV") { ENV.store("PUNK_ENV", "development") }
 
 if defined?(Bootsnap)
   # TODO: update gem and check setup options
   Bootsnap.setup(
-    cache_dir: 'tmp/cache',
-    development_mode: env == 'development',
+    cache_dir: "tmp/cache",
+    development_mode: env == "development",
     load_path_cache: true,
     compile_cache_iseq: true,
     compile_cache_yaml: true
@@ -16,9 +16,9 @@ if defined?(Bootsnap)
 end
 
 module PUNK
-  def self.init(task: 'server', path: './app', config: {})
-    require_relative 'punk/core/interface'
-    raise InternalServerError, 'Cannot call PUNK.init multiple times!' if state != :included
+  def self.init(task: "server", path: "./app", config: {})
+    require_relative "punk/core/interface"
+    raise InternalServerError, "Cannot call PUNK.init multiple times!" if state != :included
     store.args = OpenStruct.new(
       task: task,
       path: path,

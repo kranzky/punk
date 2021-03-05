@@ -1,15 +1,15 @@
 # frozen_string_literal: true
 
-require 'active_support/string_inquirer'
+require "active_support/string_inquirer"
 
-require 'date'
-require 'fileutils'
-require 'dotenv'
+require "date"
+require "fileutils"
+require "dotenv"
 
 module PUNK
   class Env < Settings
     def logger
-      SemanticLogger['PUNK::Env']
+      SemanticLogger["PUNK::Env"]
     end
 
     def initialize(*args)
@@ -47,10 +47,10 @@ module PUNK
     private
 
     def _load
-      _load_environment(File.join(PUNK.store.args.path, '..', 'env'), ENV.fetch('PUNK_ENV'), PUNK.store.args.task)
+      _load_environment(File.join(PUNK.store.args.path, "..", "env"), ENV.fetch("PUNK_ENV"), PUNK.store.args.task)
       @schema = {}
-      _load_schemas(File.join(__dir__, '..', 'config'), ENV.fetch('PUNK_ENV'), PUNK.store.args.task)
-      _load_schemas(File.join(PUNK.store.args.path, 'config'), ENV.fetch('PUNK_ENV'), PUNK.store.args.task)
+      _load_schemas(File.join(__dir__, "..", "config"), ENV.fetch("PUNK_ENV"), PUNK.store.args.task)
+      _load_schemas(File.join(PUNK.store.args.path, "config"), ENV.fetch("PUNK_ENV"), PUNK.store.args.task)
       @values = @schema.keys.zip(Array.new(@schema.length, nil)).to_h
       _add_config(
         task: PUNK.store.args.task,
@@ -58,8 +58,8 @@ module PUNK
           path: PUNK.store.args.path
         }
       )
-      _load_configs(File.join(__dir__, '..', 'config'), ENV.fetch('PUNK_ENV'), PUNK.store.args.task)
-      _load_configs(File.join(PUNK.store.args.path, 'config'), ENV.fetch('PUNK_ENV'), PUNK.store.args.task)
+      _load_configs(File.join(__dir__, "..", "config"), ENV.fetch("PUNK_ENV"), PUNK.store.args.task)
+      _load_configs(File.join(PUNK.store.args.path, "config"), ENV.fetch("PUNK_ENV"), PUNK.store.args.task)
       _add_environment
       _add_arguments
       _validate
@@ -84,7 +84,7 @@ module PUNK
     def _unflatten(data)
       results = {}
       data.each do |key, value|
-        name = key.join('.')
+        name = key.join(".")
         search = results
         while key.length > 1
           item = key.shift
@@ -108,12 +108,12 @@ module PUNK
         required = false
         key.map! do |name|
           match = /^(_?)([a-z_]+)(!?)$/.match(name)
-          raise InternalServerError, "Invalid schema key: #{key.join('.')}" if match.nil?
-          override &&= match[1] != '_'
-          required ||= match[3] == '!'
+          raise InternalServerError, "Invalid schema key: #{key.join(".")}" if match.nil?
+          override &&= match[1] != "_"
+          required ||= match[3] == "!"
           match[2].to_sym
         end
-        raise InternalServerError, "Duplicate schema key: #{key.join('.')}" if @schema.key?(key)
+        raise InternalServerError, "Duplicate schema key: #{key.join(".")}" if @schema.key?(key)
         @schema[key] = {
           required: required,
           override: override,
@@ -122,9 +122,9 @@ module PUNK
       end
     end
 
-    def _load_schemas(base, name=nil, dir=nil)
+    def _load_schemas(base, name = nil, dir = nil)
       base = File.expand_path(base)
-      _load_schema(File.join(base, 'schema.json'))
+      _load_schema(File.join(base, "schema.json"))
       _load_schema(File.join(base, "schema_#{name}.json")) unless name.nil?
       _load_schemas(File.join(base, dir), name) unless dir.nil?
     end
@@ -133,7 +133,7 @@ module PUNK
       @schema.each do |key, value|
         next unless value[:required]
         current_value = @values[key]
-        raise InternalServerError, "Missing required configuration value: #{key.join('.')}" if current_value.nil?
+        raise InternalServerError, "Missing required configuration value: #{key.join(".")}" if current_value.nil?
       end
     end
 
@@ -212,16 +212,16 @@ module PUNK
         else
           raise InternalServerError, "Unknown validation: #{validation}"
         end
-      raise InternalServerError, "#{value} is invalid for #{key.join('.')}: #{validation}" unless valid
+      raise InternalServerError, "#{value} is invalid for #{key.join(".")}: #{validation}" unless valid
       value
     end
 
     def _add_value(key, value)
       schema = @schema[key]
-      raise InternalServerError, "Configuration not found in schema: #{key.join('.')}" if schema.nil?
+      raise InternalServerError, "Configuration not found in schema: #{key.join(".")}" if schema.nil?
       unless schema[:override]
         current_value = @values[key]
-        raise InternalServerError, "Cannot override configuration value: #{key.join('.')}" unless current_value.nil?
+        raise InternalServerError, "Cannot override configuration value: #{key.join(".")}" unless current_value.nil?
       end
       @values[key] = _typecast(key, value, schema[:validate], schema[:required])
     end
@@ -238,9 +238,9 @@ module PUNK
       _add_config(ActiveSupport::JSON.decode(File.read(path)))
     end
 
-    def _load_configs(base, name=nil, dir=nil)
+    def _load_configs(base, name = nil, dir = nil)
       base = File.expand_path(base)
-      _load_config(File.join(base, 'defaults.json'))
+      _load_config(File.join(base, "defaults.json"))
       _load_config(File.join(base, "#{name}.json")) unless name.nil?
       _load_configs(File.join(base, dir), name) unless dir.nil?
     end
@@ -251,12 +251,12 @@ module PUNK
       Dotenv.load(path)
     end
 
-    def _load_environment(base, name=nil, dir=nil)
+    def _load_environment(base, name = nil, dir = nil)
       base = File.expand_path(base)
       _load_environment(File.join(base, dir), name) unless dir.nil?
-      _load_dotenv(File.join(base, 'locals.sh'))
+      _load_dotenv(File.join(base, "locals.sh"))
       _load_dotenv(File.join(base, "#{name}.sh"))
-      _load_dotenv(File.join(base, 'defaults.sh'))
+      _load_dotenv(File.join(base, "defaults.sh"))
     end
 
     def _add_environment
@@ -264,7 +264,7 @@ module PUNK
         key = key.downcase
         match = /^punk_(.*)$/.match(key)
         next unless match
-        key = match[1].split('_').reject(&:empty?).map(&:to_sym)
+        key = match[1].split("_").reject(&:empty?).map(&:to_sym)
         _add_value(key, value)
       end
     end

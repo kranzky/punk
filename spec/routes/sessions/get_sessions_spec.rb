@@ -3,21 +3,21 @@
 describe PUNK, "GET /sessions" do
   include_context "Punk"
 
-  context 'when the user is not authenticated' do
+  context "when the user is not authenticated" do
     before do
-      get '/sessions'
+      get "/sessions"
     end
 
     it { is_expected.not_to be_successful }
   end
 
-  context 'when the user is authenticated' do
+  context "when the user is authenticated" do
     let(:user) { create(:user) }
-    let(:identity) { create(:identity, user: user, claim_type: 'phone') }
+    let(:identity) { create(:identity, user: user, claim_type: "phone") }
 
     before do
       login(identity.claim)
-      get '/sessions'
+      get "/sessions"
     end
 
     after do

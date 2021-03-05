@@ -8,7 +8,7 @@ describe PUNK::Tenant do
   it "is assigned a uuid on save" do
     tenant = build(:tenant)
     expect(tenant.id).to be_nil
-    tenant.save
+    tenant.save_changes
     expect(valid_uuid?(tenant.id)).to be(true)
   end
 
@@ -21,7 +21,7 @@ describe PUNK::Tenant do
   it "is invalid without a name" do
     tenant = build(:tenant, name: nil)
     expect(tenant.valid?).to be(false)
-    expect(tenant.errors[:name].first).to eq('is not present')
+    expect(tenant.errors[:name].first).to eq("is not present")
   end
 
   it "is valid without an icon" do
@@ -32,7 +32,7 @@ describe PUNK::Tenant do
   it "is invalid if the icon is not a URL" do
     tenant = build(:tenant, icon: Faker::Alphanumeric.alpha)
     expect(tenant.valid?).to be(false)
-    expect(tenant.errors[:icon].first).to eq('is not a URL')
+    expect(tenant.errors[:icon].first).to eq("is not a URL")
   end
 
   it "can have multiple users" do

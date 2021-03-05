@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-require 'sequel/plugins/validation_helpers'
-require_relative '../framework/plugins/validation'
+require "sequel/plugins/validation_helpers"
+require_relative "../framework/plugins/validation"
 
 module PUNK
   module Validatable
@@ -21,9 +21,10 @@ module PUNK
       errors.empty?
     end
 
-    def validate; end
+    def validate
+    end
 
-    def validates_not_empty(atts, opts=Sequel::OPTS)
+    def validates_not_empty(atts, opts = Sequel::OPTS)
       validatable_attributes_for_type(:not_empty, atts, opts) { |_a, v, m| validation_error_message(m) if v.blank? }
     end
 
@@ -42,13 +43,13 @@ module PUNK
       value =
         begin
           instance_variable_get(name)
-        rescue StandardError
+        rescue
           nil
         end
       value ||=
         begin
           send(name)
-        rescue StandardError
+        rescue
           nil
         end
       value

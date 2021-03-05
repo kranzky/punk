@@ -15,7 +15,7 @@ PUNK::Command.create "login" do
         "PATH_INFO" => "/sessions",
         "CONTENT_TYPE" => "text/json",
         "SCRIPT_NAME" => "",
-        "rack.input" => StringIO.new({ claim: claim }.to_json)
+        "rack.input" => StringIO.new({claim: claim}.to_json)
       )
     response = ActiveSupport::JSON.decode(response[-1].first).deep_symbolize_keys
     return if response[:errors].present?
@@ -23,17 +23,17 @@ PUNK::Command.create "login" do
     authenticated = false
     while authenticated == false
       SemanticLogger.flush
-      secret = ask("Secret: ") { |q| q.echo = '*' }
+      secret = ask("Secret: ") { |q| q.echo = "*" }
       response =
         PUNK.app.call(
           "REQUEST_METHOD" => "PATCH",
           "PATH_INFO" => "/sessions/#{slug}",
           "CONTENT_TYPE" => "text/json",
           "SCRIPT_NAME" => "",
-          "rack.input" => StringIO.new({ secret: secret }.to_json)
+          "rack.input" => StringIO.new({secret: secret}.to_json)
         )
       response = ActiveSupport::JSON.decode(response[-1].first).deep_symbolize_keys
-      break if response[:errors].present? && response[:errors].first != 'Secret is incorrect'
+      break if response[:errors].present? && response[:errors].first != "Secret is incorrect"
       authenticated = response[:message].present?
     end
     response[:message]

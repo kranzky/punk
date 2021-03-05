@@ -5,11 +5,11 @@ class Roda
     module Cors
       def self.configure(app, origin)
         return if origin.nil?
-        require 'rack/cors'
+        require "rack/cors"
         app.use ::Rack::Cors do
           allow do
             origins origin
-            resource '*', headers: :any, methods: :any
+            resource "*", headers: :any, methods: :any
           end
         end
       end

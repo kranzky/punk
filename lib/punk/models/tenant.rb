@@ -6,7 +6,7 @@ module PUNK
   # @property name(required) [string] the name of the tenant
   # @property icon(required) [string] an image URL
   class Tenant < PUNK::Model
-    alias to_s name
+    alias_method :to_s, :name
 
     many_to_many :users
     one_to_many :groups

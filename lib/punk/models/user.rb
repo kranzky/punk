@@ -6,7 +6,7 @@ module PUNK
   # @property name(required) [string] the name of the user
   # @property icon(required) [string] an image URL
   class User < Model
-    alias to_s name
+    alias_method :to_s, :name
 
     many_to_many :tenants
     many_to_many :groups
@@ -25,7 +25,7 @@ module PUNK
     end
 
     def active_sessions
-      sessions_dataset.where(Sequel.lit('"sessions"."state"') => 'active')
+      sessions_dataset.where(Sequel.lit('"sessions"."state"') => "active")
     end
   end
 end

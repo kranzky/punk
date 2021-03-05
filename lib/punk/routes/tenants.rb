@@ -3,7 +3,7 @@
 # @resource Tenants
 #
 # All resources in the system are relative to a particular tenant application.
-PUNK.route('tenants') do
+PUNK.route("tenants") do
   require_session!
 
   # Retrieve the list of tenants visible to the authenticated user.

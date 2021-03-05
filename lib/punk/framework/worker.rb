@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'sidekiq'
+require "sidekiq"
 
 module PUNK
   class Worker < Runnable
@@ -8,11 +8,11 @@ module PUNK
 
     def self.perform_now(**kwargs)
       worker = new
-      worker.define_singleton_method :logger, -> { SemanticLogger['PUNK::SKQ'] }
+      worker.define_singleton_method :logger, -> { SemanticLogger["PUNK::SKQ"] }
       worker.send(:perform, **kwargs)
     end
 
-    def perform(kwargs={})
+    def perform(kwargs = {})
       @_started = Time.now.utc
       logger.info "Started #{self.class.name}", kwargs.sanitize.inspect
       logger.push_tags(self.class.name)

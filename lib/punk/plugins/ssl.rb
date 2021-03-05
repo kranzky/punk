@@ -4,7 +4,7 @@ class Roda
   module RodaPlugins
     module Ssl
       def self.configure(app)
-        require 'rack/ssl-enforcer'
+        require "rack/ssl-enforcer"
         app.use ::Rack::SslEnforcer
       end
     end

@@ -1,16 +1,16 @@
 # frozen_string_literal: true
 
-require 'roda'
-require 'sidekiq/web'
-require 'sidekiq/cron/web'
-require 'rack/protection'
+require "roda"
+require "sidekiq/web"
+require "sidekiq/cron/web"
+require "rack/protection"
 
-require_relative '../plugins/all'
+require_relative "../plugins/all"
 
 # don't use rack session for sidekiq (we do our own auth when routing)
 Sidekiq::Web.set(:sessions, false)
 # TODO: need custom roda route csrf in sidekiq web forms
-Sidekiq::Web.use(::Rack::Protection, use: :none, logging: true, logger: SemanticLogger['PUNK::RPT'])
+Sidekiq::Web.use(::Rack::Protection, use: :none, logging: true, logger: SemanticLogger["PUNK::RPT"])
 
 module PUNK
   def self.route(name, &block)
@@ -23,15 +23,15 @@ module PUNK
 
   ROUTES = Tempfile.new("routes.json").path
   PUNK.profile_info("generate", path: ROUTES) do
-    system "roda-parse_routes -f #{ROUTES} #{File.expand_path(File.join(PUNK.get.app.path, 'routes', '*'))} #{File.expand_path(File.join(__dir__, '..', 'routes', '*'))}"
+    system "roda-parse_routes -f #{ROUTES} #{File.expand_path(File.join(PUNK.get.app.path, "routes", "*"))} #{File.expand_path(File.join(__dir__, "..", "routes", "*"))}"
   end
 
   class App < Roda
     include Loggable
 
     REMOTE = PUNK.env.staging? || PUNK.env.production?
-    PUBLIC = File.join(PUNK.get.app.path, '..', 'www')
-    index_path = File.join(PUBLIC, 'index.html')
+    PUBLIC = File.join(PUNK.get.app.path, "..", "www")
+    index_path = File.join(PUBLIC, "index.html")
     INDEX =
       if File.exist?(index_path)
         File.read(index_path)
@@ -50,7 +50,7 @@ module PUNK
         INDEX_HTML
       end
 
-    plugin :sessions, secret: [PUNK.get.cookie.secret].pack('H*'),
+    plugin :sessions, secret: [PUNK.get.cookie.secret].pack("H*"),
                       key: PUNK.get.cookie.key,
                       max_seconds: 1.year.to_i,
                       max_idle_sessions: 1.month.to_i,
@@ -70,12 +70,12 @@ module PUNK
     plugin :path_rewriter
     plugin :slash_path_empty
     plugin :multi_route
-    plugin :type_routing, types: { csv: 'text/csv' }, default_type: :json
+    plugin :type_routing, types: {csv: "text/csv"}, default_type: :json
     plugin :route_list, file: ROUTES
     plugin :disallow_file_uploads
     plugin :public, root: PUBLIC
 
-    plugin :default_headers, 'Content-Type' => 'text/html', 'Content-Security-Policy' => "default-src 'self';img-src *", 'Strict-Transport-Security' => 'max-age=16070400;', 'X-Frame-Options' => 'deny', 'X-Content-Type-Options' => 'nosniff', 'X-XSS-Protection' => '1; mode=block'
+    plugin :default_headers, "Content-Type" => "text/html", "Content-Security-Policy" => "default-src 'self';img-src *", "Strict-Transport-Security" => "max-age=16070400;", "X-Frame-Options" => "deny", "X-Content-Type-Options" => "nosniff", "X-XSS-Protection" => "1; mode=block"
 
     plugin :error_handler
     plugin :not_found
@@ -83,24 +83,24 @@ module PUNK
 
     request_delegate :root, :on, :is, :get, :post, :redirect, :patch, :delete
 
-    rewrite_path(/\A\/?\z/, '/index.html')
-    rewrite_path(/\A\/api\/?\z/, '/api/index.html')
+    rewrite_path(/\A\/?\z/, "/index.html")
+    rewrite_path(/\A\/api\/?\z/, "/api/index.html")
 
     def require_session!
       begin
-        @_current_session = Session[request.session['session_id']]
+        @_current_session = Session[request.session["session_id"]]
         if @_current_session&.active?
           @_current_session.touch
         else
           clear_session
           @_current_session = nil
         end
-      rescue StandardError => e
+      rescue => e
         exception(e)
         raise Unauthorized, e.message
       end
-      raise Unauthorized, 'Session does not exist' if @_current_session.nil?
-      PUNK.logger.info "require_session!", { current_session: current_session.inspect, current_identity: current_identity.inspect, current_user: current_user.inspect }.inspect
+      raise Unauthorized, "Session does not exist" if @_current_session.nil?
+      PUNK.logger.info "require_session!", {current_session: current_session.inspect, current_identity: current_identity.inspect, current_user: current_user.inspect}.inspect
     end
 
     def require_anonymous!
@@ -109,9 +109,9 @@ module PUNK
     end
 
     def require_tenant!
-      raise Unauthorized, 'Session does not exist' if @_current_session.nil?
+      raise Unauthorized, "Session does not exist" if @_current_session.nil?
       @_current_tenant = current_user.tenants_dataset[id: params[:tenant_id]]
-      PUNK.logger.info "require_tenant!", { current_tenant: @_current_tenant.inspect }.inspect
+      PUNK.logger.info "require_tenant!", {current_tenant: @_current_tenant.inspect}.inspect
     end
 
     def args
@@ -145,17 +145,17 @@ module PUNK
     end
 
     PUNK_CONTENT_TYPE_LOOKUP = {
-      csv: 'text/csv',
-      html: 'text/html',
-      json: 'application/json',
-      xml: 'application/xml'
+      csv: "text/csv",
+      html: "text/html",
+      json: "application/json",
+      xml: "application/xml"
     }.freeze
     def render(view)
       raise InternalServerError, "Not a view: #{view}" unless view.is_a?(View)
       format = request.requested_type
       view.profile_info("render", format: format) do
         response.status = view.status if view.is_a?(Fail)
-        response['Content-Type'] = PUNK_CONTENT_TYPE_LOOKUP[format]
+        response["Content-Type"] = PUNK_CONTENT_TYPE_LOOKUP[format]
         view.render(format)
       end
     end
@@ -164,7 +164,7 @@ module PUNK
       exception(e, current_user: current_user)
       case e
       when BadRequest
-        present Fail, message: 'Bad Request', error_messages: [e.message], status: 400
+        present Fail, message: "Bad Request", error_messages: [e.message], status: 400
       when Unauthorized
         present Fail, message: "Unauthorized", error_messages: [e.message], status: 401
       when Forbidden
@@ -190,10 +190,10 @@ module PUNK
       @_started = Time.now.utc
       name = "#{request.request_method} #{request.path}"
       logger.info "Started #{name} for #{request.ip}", params.deep_symbolize_keys.sanitize.inspect
-      logger.trace request.env['HTTP_USER_AGENT']
+      logger.trace request.env["HTTP_USER_AGENT"]
       logger.info "Started #{name} for #{request.ip || Session.default_values[:remote_addr].to_s}", params.deep_symbolize_keys.sanitize.inspect
-      logger.trace request.env['HTTP_USER_AGENT'] || Session.default_values[:user_agent]
-      logger.trace request.env['HTTP_COOKIE']
+      logger.trace request.env["HTTP_USER_AGENT"] || Session.default_values[:user_agent]
+      logger.trace request.env["HTTP_COOKIE"]
       logger.push_tags(name)
       _set_cookie(request.env)
     end
@@ -203,14 +203,14 @@ module PUNK
       name = logger.pop_tags(1).join
       duration = 1000.0 * (Time.now.utc - @_started)
       logger.pop_tags
-      logger.trace((headers.present? ? headers['Set-Cookie'] : nil) || "(no cookie set)")
+      logger.trace((headers.present? ? headers["Set-Cookie"] : nil) || "(no cookie set)")
       logger.info message: "Completed #{name} status #{status}", duration: duration
       _store_cookie(headers)
     end
 
     route do |r|
       r.public
-      r.on 'jobs' do
+      r.on "jobs" do
         require_session!
         r.run Sidekiq::Web
       end
@@ -222,26 +222,26 @@ module PUNK
     def _set_cookie(headers)
       return if REMOTE
       return if headers.blank?
-      return if headers['HTTP_USER_AGENT'].present?
-      return if headers['HTTP_COOKIE'].present?
-      cookie_file = 'tmp/.cookie-jar'
-      cookie_file += '-test' if PUNK.env.test?
+      return if headers["HTTP_USER_AGENT"].present?
+      return if headers["HTTP_COOKIE"].present?
+      cookie_file = "tmp/.cookie-jar"
+      cookie_file += "-test" if PUNK.env.test?
       cookie = File.read(cookie_file) if File.exist?(cookie_file)
       return if cookie.blank?
-      headers['HTTP_COOKIE'] = cookie
+      headers["HTTP_COOKIE"] = cookie
     end
 
     def _store_cookie(headers)
       return if REMOTE
       return if headers.blank?
-      cookie = headers['Set-Cookie']
+      cookie = headers["Set-Cookie"]
       return if cookie.blank?
-      cookie_file = 'tmp/.cookie-jar'
-      cookie_file += '-test' if PUNK.env.test?
-      if cookie =~ /max-age=0/
+      cookie_file = "tmp/.cookie-jar"
+      cookie_file += "-test" if PUNK.env.test?
+      if /max-age=0/.match?(cookie)
         File.delete(cookie_file)
       else
-        File.open(cookie_file, 'w') { |file| file << cookie }
+        File.open(cookie_file, "w") { |file| file << cookie }
       end
     end
   end

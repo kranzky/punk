@@ -17,11 +17,11 @@ module PUNK
     end
 
     def process
-      require 'mailgun-ruby'
+      require "mailgun-ruby"
 
       client =
         if !PUNK.env.test? && PUNK.get.mailgun.mock
-          Mailgun::Client.new(PUNK.get.mailgun.api_key, 'bin.mailgun.net', PUNK.get.mailgun.postbin, ssl=false) # rubocop:disable Lint/UselessAssignment,Layout/SpaceAroundOperators
+          Mailgun::Client.new(PUNK.get.mailgun.api_key, "bin.mailgun.net", PUNK.get.mailgun.postbin, ssl=false) # rubocop:disable Lint/UselessAssignment,Layout/SpaceAroundOperators
         else
           Mailgun::Client.new(PUNK.get.mailgun.api_key)
         end
@@ -44,7 +44,7 @@ module PUNK
 
       return unless !PUNK.env.test? && PUNK.get.mailgun.mock
 
-      require 'launchy'
+      require "launchy"
       Launchy.open("http://bin.mailgun.net/#{PUNK.get.mailgun.postbin}")
     end
   end

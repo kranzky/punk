@@ -9,13 +9,13 @@ module PUNK
 
     def process
       logger.warn "#{message} (#{status}): #{error_messages.to_sentence}"
-      'fail'
+      "fail"
     end
 
     protected
 
     def _dir
-      File.join(__dir__, '..', 'templates')
+      File.join(__dir__, "..", "templates")
     end
   end
 end

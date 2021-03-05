@@ -4,7 +4,7 @@ describe PUNK, "PATCH /sessions" do
   include_context "Punk"
 
   before do
-    patch '/sessions'
+    patch "/sessions"
   end
 
   it { is_expected.not_to be_successful }

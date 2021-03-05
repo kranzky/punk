@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 FactoryBot.define do
-  factory :user, class: 'PUNK::User' do
+  factory :user, class: "PUNK::User" do
     to_create(&:save)
 
     name { Faker::Name.name }

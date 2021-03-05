@@ -3,17 +3,17 @@
 describe PUNK, "GET /groups" do
   include_context "Punk"
 
-  context 'when the user is not authenticated' do
+  context "when the user is not authenticated" do
     before do
-      get '/groups'
+      get "/groups"
     end
 
     it { is_expected.not_to be_successful }
   end
 
-  context 'when the user is authenticated' do
+  context "when the user is authenticated" do
     let(:tenant) { create(:tenant) }
-    let(:identity) { create(:identity, claim_type: 'phone') }
+    let(:identity) { create(:identity, claim_type: "phone") }
     let(:group) { create(:group, tenant: tenant) }
 
     before do

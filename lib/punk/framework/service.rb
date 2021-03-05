@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'active_support/string_inquirer'
+require "active_support/string_inquirer"
 
 module PUNK
   class Service < Runnable
@@ -34,9 +34,11 @@ module PUNK
       ActiveSupport::StringInquirer.new(@_state.to_s)
     end
 
-    def on_success; end
+    def on_success
+    end
 
-    def on_failure; end
+    def on_failure
+    end
 
     private
 

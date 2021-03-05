@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'sequel'
+require "sequel"
 
 module Sequel
   def self.json_parser_error_class
@@ -12,7 +12,7 @@ module Sequel
   end
 
   class Database
-    def log_connection_yield(sql, conn, args=nil, &block)
+    def log_connection_yield(sql, conn, args = nil, &block)
       return unless @loggers.first
       if conn && log_connection_info
         @loggers.first.tagged(conn.__id__) do
@@ -46,8 +46,8 @@ module PUNK
 end
 
 PUNK::Interface.register(:db) do
-  PUNK.profile_debug('db_connect', url: PUNK.get.db.url) do
-    pg = Sequel.connect(PUNK.get.db.url, logger: SemanticLogger['PUNK::SQL'])
+  PUNK.profile_debug("db_connect", url: PUNK.get.db.url) do
+    pg = Sequel.connect(PUNK.get.db.url, logger: SemanticLogger["PUNK::SQL"])
     pg.extension :pg_enum, :pg_range, :pg_array, :pg_json, :pg_row, :pg_timestamptz, :pg_inet
     Sequel.extension :pg_array_ops, :pg_range_ops, :pg_json_ops, :pg_row_ops, :named_timezones, :thread_local_timezones
     pg

@@ -3,7 +3,7 @@
 # @resource Sessions
 #
 # Handle the authentication flow.
-PUNK.route('sessions') do
+PUNK.route("sessions") do
   # Challenge the claim of someone having a particular email address or phone number.
   # @path [POST] /sessions
   # @parameter claim(required) [string] An email address or mobile phone number.
@@ -24,7 +24,7 @@ PUNK.route('sessions') do
   # route: POST /sessions
   post do
     require_anonymous!
-    perform PUNK::CreateSessionAction, args.merge(remote_addr: request.ip || PUNK::Session.default_values[:remote_addr].to_s, user_agent: request.env['HTTP_USER_AGENT'] || PUNK::Session.default_values[:user_agent])
+    perform PUNK::CreateSessionAction, args.merge(remote_addr: request.ip || PUNK::Session.default_values[:remote_addr].to_s, user_agent: request.env["HTTP_USER_AGENT"] || PUNK::Session.default_values[:user_agent])
   end
 
   # route: GET /sessions/current
