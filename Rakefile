@@ -19,7 +19,7 @@ Juwelier::Tasks.new do |gem|
   gem.description = ""
   gem.email = "lloyd@kranzky.com"
   gem.authors = ["Lloyd Kranzky"]
-  gem.required_ruby_version = ">= 2.1"
+  gem.required_ruby_version = ">= 2.6"
 end
 Juwelier::RubygemsDotOrgTasks.new
 
