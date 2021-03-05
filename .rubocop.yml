@@ -5,7 +5,7 @@ require:
   - rubocop-performance
 
 AllCops:
-  TargetRubyVersion: 2.5
+  TargetRubyVersion: 2.6
   DisabledByDefault: true
   Exclude:
     - "rndb.gemspec"
@@ -797,7 +797,7 @@ Security/YAMLLoad:
   Enabled: true
   SafeAutoCorrect: false
 
-Standard/BlockDelimiters:
+Style/BlockDelimiters:
   Enabled: true
 
 Style/Alias:
