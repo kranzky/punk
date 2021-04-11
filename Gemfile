@@ -20,7 +20,7 @@ gem "dotenv", "~> 2.7"
 gem "dot_hash", "~> 1.1"
 
 # Commands
-gem "commander", "~> 4.5"
+gem "commander", "~> 4.6"
 
 # CLI
 gem "pry", "~> 0.14"
@@ -40,7 +40,7 @@ gem "pg", "~> 1.2"
 gem "sequel_pg", "~> 1.14"
 
 # ORM
-gem "sequel", "~> 5.42"
+gem "sequel", "~> 5.43"
 
 # State Machine
 gem "aasm", "~> 5.1"
@@ -52,7 +52,7 @@ gem "rbnacl", "~> 7.1"
 gem "userstack", "~> 0.1"
 
 # Jobs
-gem "sidekiq", "~> 6.1"
+gem "sidekiq", "~> 6.2"
 gem "sidekiq-cron", "~> 1.2"
 
 # Email
@@ -62,7 +62,7 @@ gem "mailgun-ruby", "~> 1.2"
 gem "plivo", "~> 4.16"
 
 # HTTP Framework
-gem "roda", "~> 3.41"
+gem "roda", "~> 3.42"
 gem "roda-route_list", "~> 2.1"
 
 # HTML Rendering
@@ -81,9 +81,9 @@ gem "swagger_yard", "~> 1.0"
 gem "activesupport", "~> 6.1"
 
 # Monitoring
-gem "sentry-ruby", "~> 4.2"
-gem "sentry-sidekiq", "~> 4.2"
-gem "skylight", "~> 4.3"
+gem "sentry-ruby", "~> 4.3"
+gem "sentry-sidekiq", "~> 4.3"
+gem "skylight", "~> 5.0"
 
 # Phone Numbers
 gem "phony", "~> 2.18"
@@ -97,9 +97,9 @@ end
 
 # Testing
 group :test do
-  gem "coveralls_reborn", "~> 0.20"
+  gem "coveralls_reborn", "~> 0.21"
   gem "factory_bot", "~> 6.1"
-  gem "faker", "~> 2.16"
+  gem "faker", "~> 2.17"
   gem "rack-test", "~> 1.1"
   gem "rspec", "~> 3.10"
   gem "rspec-its", "~> 1.3"
@@ -113,7 +113,7 @@ end
 
 # Non-production
 group :development, :test do
-  gem "amazing_print", "~> 1.2"
+  gem "amazing_print", "~> 1.3"
   gem "byebug", "~> 11.1"
   gem "launchy", "~> 2.5"
   gem "standard", "~> 1.0"
