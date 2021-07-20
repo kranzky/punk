@@ -83,7 +83,7 @@ gem "activesupport", "~> 6.1"
 # Monitoring
 gem "sentry-ruby", "~> 4.6"
 gem "sentry-sidekiq", "~> 4.6"
-gem "skylight", "~> 5.1"
+gem "skylight", "~> 5.0"
 
 # Phone Numbers
 gem "phony", "~> 2.19"
