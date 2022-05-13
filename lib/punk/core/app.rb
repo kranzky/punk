@@ -51,14 +51,12 @@ module PUNK
       end
 
     plugin :sessions, secret: [PUNK.get.cookie.secret].pack("H*"),
-                      key: PUNK.get.cookie.key,
-                      max_seconds: 1.year.to_i,
-                      max_idle_sessions: 1.month.to_i,
-                      cookie_options: {
-                        same_site: REMOTE ? :strict : :lax,
-                        secure: REMOTE,
-                        max_age: 1.year.to_i
-                      }
+      key: PUNK.get.cookie.key,
+      max_seconds: 1.year.to_i,
+      max_idle_sessions: 1.month.to_i,
+      cookie_options: {
+        same_site: REMOTE ? :strict : :lax, secure: REMOTE, max_age: 1.year.to_i
+      }
     plugin :ssl if REMOTE
     plugin :cors, PUNK.get.app.client
     # plugin :route_csrf
